@@ -12,7 +12,7 @@
     "preview": "histoire preview"
   },
   "peerDependencies": {
-    "primevue": "^3.29.1",
+    "@oruga-ui/oruga-next": "^0.6.0",
     "vue": "^3.3.2"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "@histoire/plugin-percy": "^0.16.1",
     "@histoire/plugin-vue": "^0.16.1",
     "@iconify-json/carbon": "^1.1.16",
+    "@oruga-ui/oruga-next": "^0.6.0",
     "@types/node": "^18.16.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue-macros/reactivity-transform": "^0.3.7",
@@ -31,9 +32,10 @@
     "jsdom": "^22.0.0",
     "lint-staged": "^13.2.2",
     "pnpm": "^8.5.1",
-    "primevue": "^3.29.1",
+    "postcss": "^8.4.23",
     "sass": "^1.62.1",
     "simple-git-hooks": "^2.8.1",
+    "tailwindcss": "^3.3.0",
     "taze": "^0.10.1",
     "typescript": "^5.0.4",
     "unplugin-auto-import": "^0.16.0",
@@ -56,6 +58,6 @@
     ]
   },
   "dependencies": {
-    "postcss": "^8.4.23"
+    "v-wave": "^1.5.1"
   }
 }

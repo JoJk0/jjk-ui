@@ -1,8 +1,10 @@
 /// <reference types="vitest" />
+/// <reference types="histoire" />
 
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
+
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -24,8 +26,6 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
-        'vue-router',
-        '@vueuse/core',
       ],
       dts: true,
       dirs: [

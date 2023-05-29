@@ -1,11 +1,7 @@
-import './src/histoire.css'
-import 'primevue/resources/primevue.min.css'
-import './src/theme/jjk.scss'
+import '~/theme/index.scss'
+import '~/histoire.css'
 
-import type { App } from 'vue'
+import { defineSetupVue3 } from '@histoire/plugin-vue'
 
-import PrimeVue from 'primevue/config'
-
-export function setupVue3({ app }: { app: App }) {
-  app.use(PrimeVue, { ripple: true })
-}
+export const setupVue3 = defineSetupVue3(({ app }) => {
+})

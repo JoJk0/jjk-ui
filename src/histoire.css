@@ -4,7 +4,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: var(--font-family);
+  font-family: var(--base-font-family);
 }
 
 .histoire-generic-render-story{
