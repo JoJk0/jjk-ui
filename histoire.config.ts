@@ -12,6 +12,14 @@ export default defineConfig({
   storyMatch: [
     '**/*.stories.vue',
   ],
+  tree: {
+    groups: [
+      {
+        id: 'top',
+        title: '', // No toggle
+      },
+    ],
+  },
   theme: {
     title: 'jojko\'s UI',
     logo: {

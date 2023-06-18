@@ -10,5 +10,12 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppButton: typeof import('./src/components/AppButton.vue')['default']
+    AppCard: typeof import('./src/components/AppCard.vue')['default']
+    AppChip: typeof import('./src/components/AppChip.vue')['default']
+    AppIcon: typeof import('./src/components/AppIcon.vue')['default']
+    AppLogo: typeof import('./src/components/AppLogo.vue')['default']
+    AppSelectField: typeof import('./src/components/AppSelectField.vue')['default']
+    AppTextField: typeof import('./src/components/AppTextField.vue')['default']
+    AppTooltip: typeof import('./src/components/AppTooltip.vue')['default']
   }
 }

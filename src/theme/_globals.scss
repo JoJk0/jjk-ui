@@ -1,4 +1,30 @@
-$primaryColor: rgb(0, 255, 206) !default;
-$secondaryColor: rgb(121, 126, 247) !default;
-$primaryTextColor: #0a121e !default;
+@use 'sass:color' as *;
+@use 'colours' as *;
+
 $fontFamily: 'Quicksand', sans-serif;
+
+$variables: (
+  on-primary: $tristesse,
+
+  secondary: $winterEscape,
+  on-secondary: $tristesse,
+  secondary-container: rgba($winterEscape, 0.1),
+  on-secondary-container: $winterEscape,
+
+  error: $firebrick,
+  on-error: $tristesse,
+  error-container: rgba($firebrick, 0.1),
+  on-error-container: $tristesse,
+
+  background: $tristesse,
+  on-background: $winterEscape,
+
+  surface: rgba(scale($tristesse, $lightness: 30%, $saturation: 100%), .05),
+  on-surface: #fff,
+
+  surface-variant: rgba(scale($tristesse, $lightness: -30%, $saturation: 50%), .7),
+  on-surface-variant: #fff,
+
+  outline: rgba($winterEscape, .1),
+  outline-variant: rgba($winterEscape, .05)
+);
