@@ -1,6 +1,26 @@
 {
   "name": "jjk-ui",
+  "displayName": "JJK UI",
+  "version": "1.0.2",
+  "packageManager": "pnpm@8.5.1",
   "description": "A Vue 3 UI library for jojko.tech and other personal projects",
+  "author": {
+    "name": "Jacob Janisz",
+    "email": "jacob@jojko.tech"
+  },
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/JoJk0"
+  },
+  "homepage": "https://ui.jojko.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoJk0/jjk-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoJk0/jjk-ui/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
@@ -13,57 +33,21 @@
     "jojk0",
     "jojko.tech"
   ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JoJk0/jjk-ui.git"
-  },
-  "homepage": "https://ui.jojko.tech",
-  "displayName": "JJK UI",
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/JoJk0"
-  },
   "maintainers": [],
-  "peerDependenciesMeta": {
-    "vue": {
-      "optional": false
-    }
-  },
-  "readme": "./README.md",
-  "sponsor": {
-    "url": "https://github.com/sponsors/JoJk0"
-  },
-  "contributors": [
-    {
-      "name": "Jacob Janisz",
-      "email": "jacob@jojko.tech"
-    }
-  ],
-  "bugs": {
-    "url": "https://github.com/JoJk0/jjk-ui/issues"
-  },
-  "badges": [
-    {
-      "title": "npm",
-      "description": "npm package",
-      "url": "https://www.npmjs.com/package/jjk-ui",
-      "href": "https://www.npmjs.com/package/jjk-ui",
-      "image": "https://img.shields.io/npm/v/jjk-ui?color=blue&logo=npm&style=flat-square"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/jjk-ui.mjs"
     },
-    {
-      "title": "GitHub",
-      "description": "source code",
-      "url": "https://github.com/JoJk0/jjk-ui",
-      "href": "https://github.com/JoJk0/jjk-ui"
-    }
-  ],
-  "author": {
-    "name": "Jacob Janisz",
-    "email": "jacob@jojko.tech"
+    "./styles": "./dist/style.css",
+    "./*": "./*"
   },
-  "version": "1.0.2",
-  "packageManager": "pnpm@8.5.1",
+  "main": "./dist/jjk-ui.mjs",
+  "module": "./dist/jjk-ui.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "dev": "histoire dev",
     "lint": "eslint .",
@@ -81,6 +65,41 @@
   },
   "peerDependencies": {
     "vue": "^3.3.2"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": false
+    }
+  },
+  "readme": "./README.md",
+  "sponsor": {
+    "url": "https://github.com/sponsors/JoJk0"
+  },
+  "contributors": [
+    {
+      "name": "Jacob Janisz",
+      "email": "jacob@jojko.tech"
+    }
+  ],
+  "badges": [
+    {
+      "title": "npm",
+      "description": "npm package",
+      "url": "https://www.npmjs.com/package/jjk-ui",
+      "href": "https://www.npmjs.com/package/jjk-ui",
+      "image": "https://img.shields.io/npm/v/jjk-ui?color=blue&logo=npm&style=flat-square"
+    },
+    {
+      "title": "GitHub",
+      "description": "source code",
+      "url": "https://github.com/JoJk0/jjk-ui",
+      "href": "https://github.com/JoJk0/jjk-ui"
+    }
+  ],
+  "dependencies": {
+    "@oruga-ui/oruga-next": "^0.6.0",
+    "@vueuse/core": "^10.1.2",
+    "v-wave": "^1.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
@@ -125,20 +144,6 @@
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/jjk-ui.mjs"
-    },
-    "./styles": "./dist/style.css",
-    "./*": "./*"
-  },
-  "main": "./dist/jjk-ui.mjs",
-  "module": "./dist/jjk-ui.mjs",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
   "lint-staged": {
     "*.ts": "eslint --fix",
     "*.vue": "eslint --fix"
@@ -147,11 +152,6 @@
     "extends": [
       "@antfu"
     ]
-  },
-  "dependencies": {
-    "@oruga-ui/oruga-next": "^0.6.0",
-    "@vueuse/core": "^10.1.2",
-    "v-wave": "^1.5.1"
   },
   "release": {
     "branches": [
