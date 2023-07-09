@@ -25,7 +25,7 @@ const Configuration: UserConfig = {
   /*
    * Functions that return true if commitlint should ignore the given message.
    */
-  ignores: [commit => commit === ''],
+  ignores: [message => /^Bumps \[.+]\(.+\) from .+ to .+\.$/m.test(message)],
   /*
    * Whether commitlint uses the default ignore rules.
    */
