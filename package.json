@@ -153,9 +153,6 @@
     "@vueuse/core": "^10.1.2",
     "v-wave": "^1.5.1"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "release": {
     "branches": [
       "main",
