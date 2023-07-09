@@ -62,7 +62,7 @@
     "name": "Jacob Janisz",
     "email": "jacob@jojko.tech"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "packageManager": "pnpm@8.5.1",
   "scripts": {
     "dev": "histoire dev",
