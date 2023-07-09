@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 /// <reference types="histoire" />
 
-import path from 'node:path'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 
@@ -9,11 +9,12 @@ import Vue from '@vitejs/plugin-vue'
 import VueMacros from 'unplugin-vue-macros/vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import Dts from 'vite-plugin-dts'
 
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
+      '~/': `${resolve(__dirname, 'src')}/`,
     },
   },
   plugins: [
@@ -52,6 +53,9 @@ export default defineConfig({
       dts: true,
     }),
 
+    // https://github.com/qmhc/vite-plugin-dts
+    Dts(),
+
   ],
 
   // https://github.com/vitest-dev/vitest
@@ -61,9 +65,10 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'jjk-ui',
-      fileName: format => `vue-use.${format}.js`,
+      formats: ['es'],
+      fileName: 'jjk-ui',
     },
   },
 })

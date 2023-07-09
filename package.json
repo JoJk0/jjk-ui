@@ -20,13 +20,6 @@
   },
   "homepage": "https://ui.jojko.tech",
   "displayName": "JJK UI",
-  "files": [
-    "dist",
-    "docs",
-    "LICENSE",
-    "package.json",
-    "README.md"
-  ],
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/JoJk0"
@@ -78,8 +71,9 @@
     "test": "vitest",
     "up": "taze major -I",
     "postinstall": "npx simple-git-hooks",
-    "build": "histoire build",
-    "percy": "percy exec pnpm run build --",
+    "build": "vue-tsc --noEmit && vite build",
+    "story:build": "percy exec pnpm run build --",
+    "story:deploy": "percy exec pnpm run build --",
     "release": "semantic-release",
     "preview": "histoire preview",
     "prepare": "husky install",
@@ -123,6 +117,7 @@
     "unplugin-vue-components": "^0.24.1",
     "unplugin-vue-macros": "^2.3.0",
     "vite": "^4.3.0",
+    "vite-plugin-dts": "^3.2.0",
     "vitest": "^0.31.0",
     "vue": "^3.3.2",
     "vue-tsc": "^1.6.5"
@@ -130,6 +125,20 @@
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/jjk-ui.mjs"
+    },
+    "./styles": "./dist/style.css",
+    "./*": "./*"
+  },
+  "main": "./dist/jjk-ui.mjs",
+  "module": "./dist/jjk-ui.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
   "lint-staged": {
     "*.ts": "eslint --fix",
     "*.vue": "eslint --fix"
