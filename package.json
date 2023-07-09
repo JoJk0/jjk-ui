@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "version": "0.0.1",
   "packageManager": "pnpm@8.5.1",
   "scripts": {
     "dev": "histoire dev",
@@ -9,33 +9,42 @@
     "up": "taze major -I",
     "postinstall": "npx simple-git-hooks",
     "build": "histoire build",
-    "deploy": "percy exec pnpm run build",
-    "preview": "histoire preview"
+    "percy": "percy exec pnpm run build --",
+    "release": "semantic-release",
+    "preview": "histoire preview",
+    "prepare": "husky install",
+    "commitlint": "commitlint --edit"
   },
   "peerDependencies": {
-    "@oruga-ui/oruga-next": "^0.6.0",
     "vue": "^3.3.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@histoire/plugin-percy": "^0.16.1",
     "@histoire/plugin-vue": "^0.16.1",
     "@iconify-json/carbon": "^1.1.16",
     "@oruga-ui/oruga-next": "^0.6.0",
     "@percy/cli": "^1.26.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/node": "^18.16.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue-macros/reactivity-transform": "^0.3.7",
     "@vue-macros/volar": "^0.9.8",
     "@vue/test-utils": "^2.3.2",
     "autoprefixer": "^10.4.7",
+    "commitlint": "^17.6.6",
     "eslint": "8.39.0",
     "histoire": "^0.16.1",
+    "husky": "^8.0.0",
     "jsdom": "^22.0.0",
     "lint-staged": "^13.2.2",
     "pnpm": "^8.5.1",
     "postcss": "^8.4.23",
     "sass": "^1.62.1",
+    "semantic-release": "^21.0.7",
     "simple-git-hooks": "^2.8.1",
     "tailwindcss": "^3.3.0",
     "taze": "^0.10.1",
@@ -61,7 +70,36 @@
     ]
   },
   "dependencies": {
+    "@oruga-ui/oruga-next": "^0.6.0",
     "@vueuse/core": "^10.1.2",
     "v-wave": "^1.5.1"
+  },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "next",
+        "channel": "next"
+      }
+    ],
+    "repositoryUrl": "https://github.com/JoJk0/jjk-ui.git",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "dist/**/*.{js,css}",
+            "docs",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/changelog"
+    ]
   }
 }

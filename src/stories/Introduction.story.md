@@ -1,6 +1,6 @@
 ---
 group: 'top'
-icon: 'carbon:bookmark'
+icon: 'material-symbols:home-outline'
 ---
 
 # JJK UI Components
