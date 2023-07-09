@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": ".histoire/dist",
+    "site": "jjk-ui",
     "ignore": [
       "firebase.json",
       "**/.*",
