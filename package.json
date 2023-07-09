@@ -1,4 +1,74 @@
 {
+  "name": "jjk-ui",
+  "description": "A Vue 3 UI library for jojko.tech and other personal projects",
+  "keywords": [
+    "vue",
+    "vue3",
+    "ui",
+    "library",
+    "component",
+    "components",
+    "jjk",
+    "jojko",
+    "jojk0",
+    "jojko.tech"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoJk0/jjk-ui.git"
+  },
+  "homepage": "https://ui.jojko.tech",
+  "displayName": "JJK UI",
+  "files": [
+    "dist",
+    "docs",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/JoJk0"
+  },
+  "maintainers": [],
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": false
+    }
+  },
+  "readme": "./README.md",
+  "sponsor": {
+    "url": "https://github.com/sponsors/JoJk0"
+  },
+  "contributors": [
+    {
+      "name": "Jacob Janisz",
+      "email": "jacob@jojko.tech"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/JoJk0/jjk-ui/issues"
+  },
+  "badges": [
+    {
+      "title": "npm",
+      "description": "npm package",
+      "url": "https://www.npmjs.com/package/jjk-ui",
+      "href": "https://www.npmjs.com/package/jjk-ui",
+      "image": "https://img.shields.io/npm/v/jjk-ui?color=blue&logo=npm&style=flat-square"
+    },
+    {
+      "title": "GitHub",
+      "description": "source code",
+      "url": "https://github.com/JoJk0/jjk-ui",
+      "href": "https://github.com/JoJk0/jjk-ui"
+    }
+  ],
+  "author": {
+    "name": "Jacob Janisz",
+    "email": "jacob@jojko.tech"
+  },
   "version": "0.0.1",
   "packageManager": "pnpm@8.5.1",
   "scripts": {
