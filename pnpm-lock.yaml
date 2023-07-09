@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@oruga-ui/oruga-next':
     specifier: ^0.6.0
@@ -33,7 +29,7 @@ devDependencies:
     version: 0.16.1(histoire@0.16.1)(vite@4.3.9)(vue@3.3.4)
   '@iconify-json/carbon':
     specifier: ^1.1.16
-    version: 1.1.17
+    version: 1.1.18
   '@percy/cli':
     specifier: ^1.26.0
     version: 1.26.0
@@ -892,8 +888,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify-json/carbon@1.1.17:
-    resolution: {integrity: sha512-FJCHUNP+iEGZILqu5YjByV+RBrWCsMo7YWXBJSpRMvaeVH3yjK3TI8UIc7lmPGI1NRmjThiaqjxMqe7CgQY55Q==}
+  /@iconify-json/carbon@1.1.18:
+    resolution: {integrity: sha512-RbKET6KS9xUMeYVq1FUH3UUA7AYNcnApkHt2AccCwTWTQQs/O58ji4Of6z6PhRajGlbfvrJzT/Uqh19OKECRvA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -9340,3 +9336,7 @@ packages:
     optionalDependencies:
       commander: 9.5.0
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
