@@ -21,6 +21,7 @@ const Configuration: UserConfig = {
    */
   rules: {
     // 'type-enum': [RuleConfigSeverity.Error, 'always', ['foo']],
+    'body-max-line-length': [2, 'always', 500],
   },
   /*
    * Functions that return true if commitlint should ignore the given message.
