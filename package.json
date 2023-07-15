@@ -2,7 +2,7 @@
   "name": "jjk-ui",
   "displayName": "JJK UI",
   "version": "1.0.2",
-  "packageManager": "pnpm@8.5.1",
+  "packageManager": "pnpm@8.6.7",
   "description": "A Vue 3 UI library for jojko.tech and other personal projects",
   "author": {
     "name": "Jacob Janisz",
@@ -37,14 +37,25 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/jjk-ui.mjs"
+      "default": "./dist/index.mjs"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "default": "./dist/vite.mjs"
     },
     "./styles": "./dist/style.css",
     "./*": "./*"
   },
-  "main": "./dist/jjk-ui.mjs",
-  "module": "./dist/jjk-ui.mjs",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist"
+      ]
+    }
+  },
   "files": [
     "dist/*"
   ],
@@ -98,48 +109,48 @@
   ],
   "dependencies": {
     "@oruga-ui/oruga-next": "^0.6.0",
-    "@vueuse/core": "^10.1.2",
+    "@vueuse/core": "^10.2.1",
     "v-wave": "^1.5.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.6",
+    "@antfu/eslint-config": "^0.39.7",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@histoire/plugin-percy": "^0.16.1",
     "@histoire/plugin-vue": "^0.16.1",
-    "@iconify-json/carbon": "^1.1.16",
+    "@iconify-json/carbon": "^1.1.18",
     "@oruga-ui/oruga-next": "^0.6.0",
-    "@percy/cli": "^1.26.0",
+    "@percy/cli": "^1.26.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/node": "^18.16.11",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "@vue-macros/reactivity-transform": "^0.3.7",
-    "@vue-macros/volar": "^0.9.8",
-    "@vue/test-utils": "^2.3.2",
-    "autoprefixer": "^10.4.7",
+    "@types/node": "^20.4.2",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue-macros/reactivity-transform": "^0.3.14",
+    "@vue-macros/volar": "^0.12.1",
+    "@vue/test-utils": "^2.4.0",
+    "autoprefixer": "^10.4.14",
     "commitlint": "^17.6.6",
-    "eslint": "8.39.0",
-    "histoire": "^0.16.1",
-    "husky": "^8.0.0",
-    "jsdom": "^22.0.0",
-    "lint-staged": "^13.2.2",
-    "pnpm": "^8.5.1",
-    "postcss": "^8.4.23",
-    "sass": "^1.62.1",
+    "eslint": "8.45.0",
+    "histoire": "^0.16.2",
+    "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.3",
+    "pnpm": "^8.6.7",
+    "postcss": "^8.4.26",
+    "sass": "^1.63.6",
     "semantic-release": "^21.0.7",
     "simple-git-hooks": "^2.8.1",
-    "tailwindcss": "^3.3.0",
-    "taze": "^0.10.1",
-    "typescript": "^5.0.4",
-    "unplugin-auto-import": "^0.16.0",
-    "unplugin-vue-components": "^0.24.1",
-    "unplugin-vue-macros": "^2.3.0",
-    "vite": "^4.3.0",
-    "vite-plugin-dts": "^3.2.0",
-    "vitest": "^0.31.0",
-    "vue": "^3.3.2",
-    "vue-tsc": "^1.6.5"
+    "tailwindcss": "^3.3.3",
+    "taze": "^0.11.2",
+    "typescript": "^5.1.6",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.1",
+    "unplugin-vue-macros": "^2.3.6",
+    "vite": "^4.4.4",
+    "vite-plugin-dts": "^3.3.0",
+    "vitest": "^0.33.0",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

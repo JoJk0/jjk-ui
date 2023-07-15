@@ -20,16 +20,16 @@ const {
   placeholder?: string
 }>()
 
+defineSlots<{
+  trigger(active: boolean): void
+  item(label: string, value: string): void
+}>()
+
 const { modelValue } = defineModels<{
   modelValue?: {
     value: string
     label: string
   }
-}>()
-
-defineSlots<{
-  trigger(active: boolean): void
-  item(label: string, value: string): void
 }>()
 
 const { createLocalWaveDirective } = VWave

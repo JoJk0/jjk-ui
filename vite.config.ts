@@ -62,13 +62,18 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
   },
-
+  //
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        vite: resolve(__dirname, 'src/vite.ts'),
+      },
       name: 'jjk-ui',
       formats: ['es'],
-      fileName: 'jjk-ui',
+    },
+    rollupOptions: {
+      external: ['unplugin-vue-components/vite'],
     },
   },
 })
