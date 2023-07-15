@@ -72,5 +72,8 @@ export default defineConfig({
       name: 'jjk-ui',
       formats: ['es'],
     },
+    rollupOptions: {
+      external: ['unplugin-vue-components/vite'],
+    },
   },
 })
