@@ -18,12 +18,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    // Vue({
-    //   script: {
-    //     propsDestructure: true,
-    //     defineModel: true,
-    //   },
-    // }),
     VueMacros({
       plugins: {
         vue: Vue({
