@@ -4,8 +4,6 @@ import VWave from 'v-wave'
 import { useMouseInElement } from '@vueuse/core'
 import { computed, ref } from 'vue'
 
-// import { createLocalBorderShineDirective } from '~/directives/border-shine'
-
 const { variant = 'secondary' } = defineProps<{
   variant?: 'primary' | 'secondary' | 'text'
 }>()
@@ -16,7 +14,6 @@ const { vWave } = createLocalWaveDirective({
   duration: 0.2,
 })
 
-// const { vBorderShine } = createLocalBorderShineDirective()
 const buttonEl = ref(null)
 
 const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(buttonEl)
