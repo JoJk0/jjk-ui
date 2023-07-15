@@ -1,7 +1,7 @@
 {
   "name": "jjk-ui",
   "displayName": "JJK UI",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "packageManager": "pnpm@8.6.7",
   "description": "A Vue 3 UI library for jojko.tech and other personal projects",
   "author": {
