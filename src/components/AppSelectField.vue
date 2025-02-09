@@ -1,8 +1,8 @@
 <script lang="ts" setup generic="T extends any | any[]">
-import { OButton, ODropdown, ODropdownItem } from '@oruga-ui/oruga-next'
-import VWave from 'v-wave'
-import { computed } from 'vue'
-import '~/setup'
+import { OButton, ODropdown, ODropdownItem } from '@oruga-ui/oruga-next';
+import VWave from 'v-wave';
+import { computed } from 'vue';
+import '~/setup';
 
 const {
   items = [],
@@ -100,7 +100,7 @@ const label = computed(() => items?.find(item => item.value === modelValue?.valu
     background-color: transparent;
     color: var(--app-color-on-surface);
     border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
-    border-radius: var(--space-2xs);
+    border-radius: var(--space-xs);
     transition: 0.2s;
     font-size: var(--step-0);
     padding: var(--space-m) var(--space-s);

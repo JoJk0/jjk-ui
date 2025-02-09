@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import AppTextField from '~/components/AppTextField.vue'
+import { ref } from 'vue';
+import AppTextField from '~/components/AppTextField.vue';
 
 const modelValue = ref('')
 </script>
@@ -20,10 +20,10 @@ const modelValue = ref('')
       <AppTextField v-model="modelValue" error="This is illegal" />
     </Variant>
     <Variant title="With icon before text">
-      <AppTextField v-model="modelValue" icon-before="search" />
+      <AppTextField v-model="modelValue" icon-before="material-symbols:search-rounded" />
     </Variant>
     <Variant title="With icon after text">
-      <AppTextField v-model="modelValue" icon-after="search" placeholder="Search" />
+      <AppTextField v-model="modelValue" icon-after="material-symbols:search-rounded" placeholder="Search" />
     </variant>
   </Story>
 </template>
