@@ -1,0 +1,1 @@
+"use strict";const e=require("unplugin-vue-components/vite"),s=(t={componentPrefix:"App"})=>[e({dts:!0,dirs:[],resolvers:[r=>{if(r.startsWith(t.componentPrefix))return{name:r,from:"./src/index"}}]})];module.exports=s;
