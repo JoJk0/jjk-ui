@@ -1,17 +1,17 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
+
 defineProps<{
-  icon: string | [string, string]
+  icon: [string, string]
 }>()
 </script>
 
 <template>
-  <i class="material-symbols-outlined">{{ typeof icon === 'string' ? icon : Array.isArray(icon) ? icon[1] : undefined }}</i>
+  <Icon :icon="icon[1]" :class="$style.icon"/>
 </template>
 
-<style lang="scss" scoped>
-.material-symbols-outlined {
-  min-width: 1em;
-  min-height: 1em;
+<style lang="scss" module>
+.icon {
   color: inherit;
 }
 </style>

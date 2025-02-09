@@ -1,12 +1,11 @@
 import { defineConfig } from 'histoire'
 import { HstVue } from '@histoire/plugin-vue'
 import { HstPercy } from '@histoire/plugin-percy'
-import MyPlugin from './my-plugin'
 
 export default defineConfig({
   plugins: [HstVue(), HstPercy({
     pptrWait: 1000,
-  }), MyPlugin],
+  })],
   setupFile: 'histoire.setup.ts',
   storyMatch: [
     '**/*.stories.vue',

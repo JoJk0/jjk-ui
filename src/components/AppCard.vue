@@ -13,6 +13,7 @@ const { variant = 'raised' } = defineProps<{
 <style lang="scss" scoped>
 .app-card {
   background-color: var(--app-color-surface);
+  backdrop-filter: blur(1px);
   color: var(--app-color-on-surface);
   border-radius: var(--space-m);
   padding: var(--space-m);

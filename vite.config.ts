@@ -3,13 +3,13 @@
 
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
 
-// @ts-expect-error - vite-plugin-vue-macros is not typed
+import Vue from '@vitejs/plugin-vue'
 import VueMacros from 'unplugin-vue-macros/vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Dts from 'vite-plugin-dts'
+import { patchCssModules } from 'vite-css-modules'
 
 export default defineConfig({
   resolve: {
@@ -18,15 +18,12 @@ export default defineConfig({
     },
   },
   plugins: [
+    patchCssModules({
+      generateSourceTypes: true
+    }),
     VueMacros({
       plugins: {
-        vue: Vue({
-          script: {
-            propsDestructure: true,
-            defineModel: true,
-          },
-        }),
-        // vueJsx: VueJsx(), // if needed
+        vue: Vue(),
       },
     }),
 
@@ -50,24 +47,42 @@ export default defineConfig({
     // https://github.com/qmhc/vite-plugin-dts
     Dts(),
 
+    // viteStaticCopy({
+    //   targets: [
+    //     {
+    //       src: 'src/theme/index.scss',
+    //       dest: 'dist/index.css',
+    //       transform: (_, filename) => compile(filename, {
+    //         importers: [
+
+    //         ]
+    //       }).css,
+    //     },
+    //   ],
+    // }),
+
   ],
 
   // https://github.com/vitest-dev/vitest
   test: {
     environment: 'jsdom',
   },
-  //
+  // ssr: {
+  //   external: ['vue', '@vue/server-renderer'],
+  // },
   build: {
+    cssCodeSplit: false,
     lib: {
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         vite: resolve(__dirname, 'src/vite.ts'),
+        setup: resolve(__dirname, 'src/setup.ts'),
       },
       name: 'jjk-ui',
-      formats: ['es'],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['unplugin-vue-components/vite'],
+      external: ['unplugin-vue-components/vite', 'vue'],
     },
   },
 })

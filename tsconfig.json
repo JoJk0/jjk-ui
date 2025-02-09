@@ -19,7 +19,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
-      "unplugin-vue-macros/macros-global"
+      "unplugin-vue-macros/macros-global",
+      "@oruga-ui/oruga-next/volar"
     ],
     "paths": {
       "~/*": [

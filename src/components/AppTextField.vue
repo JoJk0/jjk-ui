@@ -32,7 +32,7 @@ const { modelValue = '' } = defineModels<{
   --jjk-input-background-color: transparent;
   --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), .7);
   --jjk-input-border-radius: var(--space-2xs);
-  --jjk-input-border-width: 2px;
+  --jjk-input-border-width: 1px;
   --jjk-input-color: rgba(var(--app-color-on-surface-rgb), .7);
   --jjk-input-font-size: var(--step-0);
   --jjk-input-padding: var(--space-m) var(--space-s);
@@ -40,6 +40,10 @@ const { modelValue = '' } = defineModels<{
 
   &:deep(input) {
     transition: 0.2s;
+
+    &::placeholder{
+      color: color-mix(in srgb, currentColor, transparent);
+    }
 
     &.interactive {
       &:hover {

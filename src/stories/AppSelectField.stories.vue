@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import AppSelectField from '~/components/AppSelectField.vue'
+import { ref } from 'vue';
+import AppSelectField from '~/components/AppSelectField.vue';
 
-const modelValue = ref<{
-  label: string
-  value: string
-}>()
+const modelValue = ref<string>()
 
 const items = ref([
   { label: 'Action', value: '1' },

@@ -1,6 +1,6 @@
 ---
 group: 'top'
-icon: 'material-symbols:home-outline'
+icon: 'material-symbols:home-outline-rounded'
 ---
 
 # JJK UI Components
