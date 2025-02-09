@@ -7,8 +7,8 @@ import {
   DialogRoot,
   DialogTrigger,
 } from 'radix-vue'
-import AppIcon from './AppIcon.vue'
 import AppCard from './AppCard.vue'
+import AppIcon from './AppIcon.vue'
 </script>
 
 <template>
@@ -40,27 +40,27 @@ import AppCard from './AppCard.vue'
 .trigger {
   background-color: transparent;
 }
-  .overlay {
-    background: rgba(var(--app-color-background-rgb), .8);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: grid;
-    place-items: center;
-    overflow-y: auto;
-  }
+.overlay {
+  background: rgba(var(--app-color-background-rgb), 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+}
 
-  .content {
-    min-width: 300px;
-    background: rgba(var(--app-color-on-surface-rgb) / .9);
-    padding: 30px;
-    border-radius: 4px;
-    position: fixed;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    translate: -50% -50%;
-  }
+.content {
+  min-width: 300px;
+  background: rgba(var(--app-color-on-surface-rgb) / 0.9);
+  padding: 30px;
+  border-radius: 4px;
+  position: fixed;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+}
 </style>

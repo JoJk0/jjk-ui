@@ -2,7 +2,7 @@
 @use 'sass:color' as *;
 
 // Creates a theme from a map of colours
-@mixin createTheme($themeVars){
+@mixin createTheme($themeVars) {
   @each $key, $value in $themeVars {
     --app-color-#{$key}: #{$value};
     --app-color-#{$key}-rgb: #{hexToRGBString($value)};
@@ -10,7 +10,7 @@
 }
 
 @function hexToRGBString($hexColor) {
-  @return "#{channel($hexColor, "red", $space: rgb)},#{channel($hexColor, "green", $space: rgb)},#{channel($hexColor, "blue", $space: rgb)}";
+  @return '#{channel($hexColor, 'red', $space: rgb)},#{channel($hexColor, 'green', $space: rgb)},#{channel($hexColor, 'blue', $space: rgb)}';
 }
 
 @function makePrimaryGradient($deg, $scale) {

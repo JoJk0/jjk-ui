@@ -1,12 +1,12 @@
 import { ConfigProgrammatic } from '@oruga-ui/oruga-next'
+import { markRaw } from 'vue'
+import AppIcon from './components/AppIcon.vue'
 import 'normalize.css'
 import '~/theme/index.scss'
-import AppIcon from './components/AppIcon.vue'
-import { markRaw } from 'vue'
 
 ConfigProgrammatic.setOptions({
   statusIcon: false,
   useHtml5Validation: false,
-  iconComponent: markRaw(AppIcon) ,
+  iconComponent: markRaw(AppIcon),
   iconPack: 'iconify',
 })

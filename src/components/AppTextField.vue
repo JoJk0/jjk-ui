@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import '~/setup'
 import { OInput } from '@oruga-ui/oruga-next'
+import '~/setup'
 
 const {
   placeholder,
@@ -30,10 +30,10 @@ const { modelValue = '' } = defineModels<{
 <style lang="scss" scoped>
 .app-text-field {
   --jjk-input-background-color: transparent;
-  --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), .7);
+  --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), 0.7);
   --jjk-input-border-radius: var(--space-2xs);
   --jjk-input-border-width: 1px;
-  --jjk-input-color: rgba(var(--app-color-on-surface-rgb), .7);
+  --jjk-input-color: rgba(var(--app-color-on-surface-rgb), 0.7);
   --jjk-input-font-size: var(--step-0);
   --jjk-input-padding: var(--space-m) var(--space-s);
   --jjk-input-height: var(--space-xl);
@@ -41,7 +41,7 @@ const { modelValue = '' } = defineModels<{
   &:deep(input) {
     transition: 0.2s;
 
-    &::placeholder{
+    &::placeholder {
       color: color-mix(in srgb, currentColor, transparent);
     }
 
@@ -60,8 +60,8 @@ const { modelValue = '' } = defineModels<{
     }
 
     &[disabled] {
-      --jjk-input-color: rgba(var(--app-color-on-surface-rgb), .5);
-      --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), .5);
+      --jjk-input-color: rgba(var(--app-color-on-surface-rgb), 0.5);
+      --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), 0.5);
     }
 
     &.error {

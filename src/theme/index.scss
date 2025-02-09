@@ -5,13 +5,13 @@
 @use 'fluid-scale' as *;
 @use 'fluid-space' as *;
 
-@import "@oruga-ui/theme-oruga/dist/scss/utils/variables";
+@import '@oruga-ui/theme-oruga/dist/scss/utils/variables';
 $primary: $plungePool;
 $primary-invert: #0a121e;
 $secondary: #6c757d;
 $secondary-invert: $white;
-$prefix: "jjk-";
-@import "@oruga-ui/theme-oruga/dist/scss/oruga.scss";
+$prefix: 'jjk-';
+@import '@oruga-ui/theme-oruga/dist/scss/oruga.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 
@@ -43,17 +43,28 @@ body,
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 1rem;
   line-height: 1.2;
   text-wrap: balance;
-  letter-spacing: -.05ch;
+  letter-spacing: -0.05ch;
   &.gradiented {
-    background: makePrimaryGradient(5deg, .5);
+    background: makePrimaryGradient(5deg, 0.5);
     color: transparent;
     width: fit-content;
     -webkit-background-clip: text;
@@ -78,20 +89,20 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   color: var(--app-color-secondary);
-  text-underline-offset: .15em;
+  text-underline-offset: 0.15em;
   text-underline-position: under;
   text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
   &:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
   &:active {
-    opacity: .6;
+    opacity: 0.6;
   }
   &:focus {
-    outline-offset: .1em;
+    outline-offset: 0.1em;
   }
   &:visited {
-    opacity: .7;
+    opacity: 0.7;
   }
 }
 
@@ -99,11 +110,10 @@ a {
   margin: 0;
 }
 
-
 /* Transitions */
 .fade-slide-down-enter-active,
 .fade-slide-down-leave-active {
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .fade-slide-down-enter,
@@ -117,7 +127,6 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 /* nprogress */
 #nprogress {

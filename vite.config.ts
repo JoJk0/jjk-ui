@@ -2,14 +2,14 @@
 /// <reference types="histoire" />
 
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
-
 import Vue from '@vitejs/plugin-vue'
-import VueMacros from 'unplugin-vue-macros/vite'
-import Components from 'unplugin-vue-components/vite'
+
 import AutoImport from 'unplugin-auto-import/vite'
-import Dts from 'vite-plugin-dts'
+import Components from 'unplugin-vue-components/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
+import { defineConfig } from 'vite'
 import { patchCssModules } from 'vite-css-modules'
+import Dts from 'vite-plugin-dts'
 
 export default defineConfig({
   resolve: {
@@ -19,7 +19,7 @@ export default defineConfig({
   },
   plugins: [
     patchCssModules({
-      generateSourceTypes: true
+      generateSourceTypes: true,
     }),
     VueMacros({
       plugins: {

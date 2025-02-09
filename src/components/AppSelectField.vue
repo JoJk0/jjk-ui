@@ -1,8 +1,8 @@
 <script lang="ts" setup generic="T extends any | any[]">
-import { OButton, ODropdown, ODropdownItem } from '@oruga-ui/oruga-next';
-import VWave from 'v-wave';
-import { computed } from 'vue';
-import '~/setup';
+import { OButton, ODropdown, ODropdownItem } from '@oruga-ui/oruga-next'
+import VWave from 'v-wave'
+import { computed } from 'vue'
+import '~/setup'
 
 const {
   items = [],

@@ -9,7 +9,7 @@ body,
   font-family: var(--base-font-family);
 }
 
-.histoire-generic-render-story{
+.histoire-generic-render-story {
   display: flex;
   flex-direction: column;
   padding: 1rem;

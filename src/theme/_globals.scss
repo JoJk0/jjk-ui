@@ -19,12 +19,12 @@ $variables: (
   background: $tristesse,
   on-background: $winterEscape,
 
-  surface: rgba(scale($tristesse, $lightness: 30%, $saturation: 100%), .05),
+  surface: rgba(scale($tristesse, $lightness: 30%, $saturation: 100%), 0.05),
   on-surface: #fff,
 
-  surface-variant: rgba(scale($tristesse, $lightness: -30%, $saturation: 50%), .7),
+  surface-variant: rgba(scale($tristesse, $lightness: -30%, $saturation: 50%), 0.7),
   on-surface-variant: #fff,
 
-  outline: rgba($winterEscape, .1),
-  outline-variant: rgba($winterEscape, .05)
+  outline: rgba($winterEscape, 0.1),
+  outline-variant: rgba($winterEscape, 0.05),
 );

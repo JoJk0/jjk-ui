@@ -8,6 +8,12 @@
     "name": "Jacob Janisz",
     "email": "jacob@jojko.tech"
   },
+  "contributors": [
+    {
+      "name": "Jacob Janisz",
+      "email": "jacob@jojko.tech"
+    }
+  ],
   "license": "MIT",
   "funding": {
     "type": "github",
@@ -63,6 +69,7 @@
   "scripts": {
     "dev": "histoire dev",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest",
     "up": "taze major -I",
@@ -87,12 +94,6 @@
   "sponsor": {
     "url": "https://github.com/sponsors/JoJk0"
   },
-  "contributors": [
-    {
-      "name": "Jacob Janisz",
-      "email": "jacob@jojko.tech"
-    }
-  ],
   "badges": [
     {
       "title": "npm",
