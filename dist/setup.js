@@ -1,1 +1,2 @@
-"use strict";require("./setup-CEkFFg_v.js");require("vue");
+import "./setup-Cj7PfWJ6.js";
+import "vue";
