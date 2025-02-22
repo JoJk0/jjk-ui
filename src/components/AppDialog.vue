@@ -6,15 +6,16 @@ import {
   DialogPortal,
   DialogRoot,
   DialogTrigger,
-} from 'radix-vue'
+} from 'reka-ui'
+import AppButton from './AppButton.vue'
 import AppCard from './AppCard.vue'
-import AppIcon from './AppIcon.vue'
 </script>
 
 <template>
   <DialogRoot class="app-dialog">
     <DialogTrigger
       class="trigger"
+      as-child
     >
       <slot name="trigger" />
     </DialogTrigger>
@@ -27,8 +28,9 @@ import AppIcon from './AppIcon.vue'
           <slot />
           <DialogClose
             aria-label="Close"
+            as-child
           >
-            <AppIcon icon="close" />
+            <AppButton variant="text" icon="material-symbols:close-rounded" />
           </DialogClose>
         </AppCard>
       </DialogContent>

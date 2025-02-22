@@ -5,13 +5,15 @@
 @use 'fluid-scale' as *;
 @use 'fluid-space' as *;
 
-@import '@oruga-ui/theme-oruga/dist/scss/utils/variables';
+// @use '@oruga-ui/theme-oruga/dist/scss/oruga-vars.scss' as *;
+
 $primary: $plungePool;
-$primary-invert: #0a121e;
-$secondary: #6c757d;
-$secondary-invert: $white;
-$prefix: 'jjk-';
-@import '@oruga-ui/theme-oruga/dist/scss/oruga.scss';
+// @use '@oruga-ui/theme-oruga/dist/scss/oruga.scss' with (
+//   $primary-invert: #0a121e,
+//   $secondary: #6c757d,
+//   $secondary-invert: $white,
+//   $prefix: 'jjk-',
+// );
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 

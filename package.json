@@ -1,8 +1,9 @@
 {
   "name": "jjk-ui",
   "displayName": "JJK UI",
+  "type": "module",
   "version": "1.0.6",
-  "packageManager": "pnpm@10.2.1",
+  "packageManager": "pnpm@10.4.1",
   "description": "A Vue UI library for jojko.tech and other personal projects",
   "author": {
     "name": "Jacob Janisz",
@@ -79,7 +80,7 @@
     "stories:test": "percy exec pnpm run build --",
     "release": "semantic-release",
     "preview": "histoire preview",
-    "prepare": "husky install",
+    "prepare": "husky",
     "commitlint": "commitlint --edit"
   },
   "peerDependencies": {
@@ -115,7 +116,7 @@
     "@oruga-ui/theme-oruga": "^0.5.1",
     "@vueuse/core": "^12.5.0",
     "normalize.css": "^8.0.1",
-    "radix-vue": "^1.9.13",
+    "reka-ui": "^2.0.0",
     "v-wave": "^3.0.2"
   },
   "devDependencies": {

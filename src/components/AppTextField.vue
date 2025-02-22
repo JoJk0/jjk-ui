@@ -44,6 +44,9 @@ const { modelValue = '' } = defineModels<{
   --jjk-input-font-size: var(--step-0);
   --jjk-input-padding: var(--space-m) var(--space-s);
   --jjk-input-height: var(--space-xl);
+  --default-jjk-input-width: 100%;
+  --default-jjk-input-max-width: 100%;
+  --default-jjk-input-min-width: 0;
 
   .icon-before,
   .icon-after {
@@ -53,6 +56,9 @@ const { modelValue = '' } = defineModels<{
 
   .input {
     transition: 0.2s;
+    width: var(--jjk-input-width, var(--default-jjk-input-width));
+    max-width: var(--jjk-input-max-width, var(--default-jjk-input-max-width));
+    min-width: var(--jjk-input-min-width, var(--default-jjk-input-min-width));
 
     &::placeholder {
       color: color-mix(in srgb, currentColor, transparent);

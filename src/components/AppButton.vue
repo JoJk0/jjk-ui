@@ -2,10 +2,14 @@
 import { OButton } from '@oruga-ui/oruga-next'
 import { useMouseInElement } from '@vueuse/core'
 import VWave from 'v-wave'
-import { computed, ref } from 'vue'
+import { computed, getCurrentInstance, ref } from 'vue'
+import '~/setup'
 
-const { variant = 'secondary' } = defineProps<{
+const { variant = 'secondary', icon, iconBefore, iconAfter } = defineProps<{
   variant?: 'primary' | 'secondary' | 'text'
+  icon?: string
+  iconBefore?: string
+  iconAfter?: string
 }>()
 
 const { createLocalWaveDirective } = VWave
@@ -16,6 +20,10 @@ const { vWave } = createLocalWaveDirective({
 
 const buttonEl = ref(null)
 
+const instance = getCurrentInstance()
+
+const isIconButton = computed(() => !!(icon || iconBefore || iconAfter) && !instance?.slots.default?.())
+
 const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(buttonEl)
 
 const shineXCss = computed(() => !isOutside.value ? `${(elementX.value / elementWidth.value) * 100}%` : undefined)
@@ -25,7 +33,11 @@ const shineYCss = computed(() => !isOutside.value ? `${(elementY.value / element
 <template>
   <OButton
     ref="buttonEl" v-wave
-    :class="[$style['app-button'], $style[variant], { [$style['v-border-shine']]: !(isOutside && false) }]"
+    :icon-left-class="$style['icon-before']"
+    :icon-right-class="$style['icon-after']"
+    :icon-left="icon ?? iconBefore"
+    :icon-right="iconAfter"
+    :class="[$style['app-button'], $style[variant], { [$style['v-border-shine']]: !(isOutside && false), [$style['icon-button']]: isIconButton }]"
     :wrapper-class="$style.wrapper" :label-class="$style.label"
   >
     <slot />
@@ -49,8 +61,6 @@ const shineYCss = computed(() => !isOutside.value ? `${(elementY.value / element
   border-radius: var(--jjk-button-border-radius);
   box-shadow: var(--jjk-button-box-shadow);
   font-weight: var(--jjk-button-font-weight);
-  width: inherit;
-  height: inherit;
   margin-left: 0;
   margin-right: 0;
 
@@ -93,6 +103,17 @@ const shineYCss = computed(() => !isOutside.value ? `${(elementY.value / element
 
     &:hover {
       background: var(--app-color-secondary-container);
+    }
+  }
+
+  &.icon-button {
+    .label {
+      display: none;
+    }
+    .icon-before,
+    .icon-after {
+      font-size: var(--step-1);
+      margin: 0;
     }
   }
 

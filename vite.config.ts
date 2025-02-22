@@ -17,6 +17,14 @@ export default defineConfig({
       '~/': `${resolve(__dirname, 'src')}/`,
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+
+        quietDeps: true,
+      },
+    },
+  },
   plugins: [
     patchCssModules({
       generateSourceTypes: true,
@@ -79,7 +87,7 @@ export default defineConfig({
         setup: resolve(__dirname, 'src/setup.ts'),
       },
       name: 'jjk-ui',
-      formats: ['es', 'cjs'],
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['unplugin-vue-components/vite', 'vue'],

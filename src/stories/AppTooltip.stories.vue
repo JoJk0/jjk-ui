@@ -4,11 +4,11 @@ import AppTooltip from '~/components/AppTooltip.vue'
 
 <template>
   <Story title="Tooltip">
-    <AppTooltip position="bottom">
-      <AppButton>Hover to activate tooltip</AppButton>
-      <template #content>
-        Tooltip content
+    <AppTooltip position="block-end">
+      <template #trigger>
+        <AppButton>Hover to activate tooltip</AppButton>
       </template>
+      Tooltip content
     </AppTooltip>
   </Story>
 </template>

@@ -19,5 +19,8 @@ import AppButton from '~/components/AppButton.vue'
         Text button
       </AppButton>
     </Variant>
+    <Variant title="Icon Button">
+      <AppButton variant="text" icon="material-symbols:search-rounded" />
+    </Variant>
   </Story>
 </template>
