@@ -1,9 +1,3 @@
-// @ts-check
-import antfu from '@antfu/eslint-config'
+import { sxzz } from '@sxzz/eslint-config'
 
-export default antfu(
-  {
-    unocss: false,
-    formatters: true,
-  },
-)
+export default sxzz()

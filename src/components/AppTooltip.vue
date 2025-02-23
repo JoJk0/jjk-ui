@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { TooltipArrow, TooltipContent, TooltipPortal, TooltipProvider, TooltipRoot, TooltipTrigger } from 'reka-ui';
+import {
+  TooltipArrow,
+  TooltipContent,
+  TooltipPortal,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from 'reka-ui'
 
 const { position = 'block-start' } = defineProps<{
   position?: 'block-start' | 'block-end' | 'inline-start' | 'inline-end'
@@ -19,17 +26,25 @@ const finalPosition = {
   'inline-end': 'right',
 } as const
 
-const isOpen = defineModel<boolean>('isOpen', { default: false })
+const isOpen = defineModel<boolean>('open', { default: false })
 </script>
 
 <template>
   <TooltipProvider :delay-duration="0">
-    <TooltipRoot v-model="isOpen">
+    <TooltipRoot v-model:open="isOpen">
       <TooltipTrigger as-child>
         <slot name="trigger" />
       </TooltipTrigger>
       <TooltipPortal>
-        <TooltipContent as="div" :align :position="finalPosition[position]" :aria-label avoid-collisions :class="[$attrs.class, $style['app-tooltip']]">
+        <TooltipContent
+          v-bind="$attrs"
+          as="div"
+          :align
+          :position="finalPosition[position]"
+          :align-offset="20"
+          :aria-label
+          :class="[$attrs.class, $style['app-tooltip']]"
+        >
           <TooltipArrow :class="$style.arrow" />
           <slot />
         </TooltipContent>
@@ -59,17 +74,18 @@ const isOpen = defineModel<boolean>('isOpen', { default: false })
 
   .arrow {
     fill: var(--jjk-tooltip-background-color);
+    stroke: var(--app-color-outline);
   }
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translate(0, -5%);
+    // transform: translate(0, -5%);
   }
   to {
     opacity: 1;
-    transform: translate(0, -5%);
+    // transform: translate(0, -5%);
   }
 }
 </style>

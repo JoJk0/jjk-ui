@@ -1,54 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "esnext",
     "jsx": "preserve",
-    "lib": [
-      "DOM",
-      "ESNext"
-    ],
+    "lib": ["DOM", "ESNext"],
+    "moduleDetection": "force",
     "baseUrl": ".",
-    "module": "ESNext",
+    "module": "preserve",
     "moduleResolution": "bundler",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
     "types": [
       "vite/client",
       "unplugin-vue-macros/macros-global",
-      "@oruga-ui/oruga-next/volar"
+      "vue-component-type-helpers"
     ],
-    "allowJs": true,
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true
-  },
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-options",
-      "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-props",
-      "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/short-vmodel",
-      "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/export-props"
-    ]
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts",
+    "**/*.d.ts",
     "src/**/*.vue",
-    "src/**/*.tsx",
     "env.d.ts",
     "src/**/*.vue"
   ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }

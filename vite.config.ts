@@ -20,7 +20,6 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-
         quietDeps: true,
       },
     },
@@ -29,6 +28,7 @@ export default defineConfig({
     patchCssModules({
       generateSourceTypes: true,
     }),
+
     VueMacros({
       plugins: {
         vue: Vue(),
@@ -37,13 +37,9 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'vue',
-      ],
+      imports: ['vue', '@vueuse/core'],
       dts: true,
-      dirs: [
-        './src/composables',
-      ],
+      dirs: ['./src/composables'],
       vueTemplate: true,
     }),
 
@@ -54,21 +50,6 @@ export default defineConfig({
 
     // https://github.com/qmhc/vite-plugin-dts
     Dts(),
-
-    // viteStaticCopy({
-    //   targets: [
-    //     {
-    //       src: 'src/theme/index.scss',
-    //       dest: 'dist/index.css',
-    //       transform: (_, filename) => compile(filename, {
-    //         importers: [
-
-    //         ]
-    //       }).css,
-    //     },
-    //   ],
-    // }),
-
   ],
 
   // https://github.com/vitest-dev/vitest

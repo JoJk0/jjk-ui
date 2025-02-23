@@ -6,15 +6,18 @@ const { size = 'medium', transparent = false } = defineProps<{
 </script>
 
 <template>
-  <div class="app-chip" :class="[size, { transparent }]">
+  <div
+    :class="[
+      $style['app-chip'],
+      $style[size],
+      { [$style.transparent]: transparent },
+    ]"
+  >
     <slot />
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use '~/theme/globals' as *;
-@use 'sass:color';
-
+<style lang="scss" module>
 .app-chip {
   background-color: var(--app-color-secondary);
   color: var(--app-color-on-secondary);
@@ -25,6 +28,7 @@ const { size = 'medium', transparent = false } = defineProps<{
   width: fit-content;
   display: flex;
   gap: 1em;
+
   &.small {
     font-size: var(--step--2);
     padding: var(--space-3xs) var(--space-xs);

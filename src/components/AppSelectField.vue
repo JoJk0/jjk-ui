@@ -1,13 +1,27 @@
-<script lang="ts" setup generic="T extends any | any[]">
-import { OButton, ODropdown, ODropdownItem } from '@oruga-ui/oruga-next';
-import VWave from 'v-wave';
-import { computed } from 'vue';
-import '~/setup';
+<script lang="ts" setup generic="T extends AcceptableValue">
+import {
+  SelectArrow,
+  SelectContent,
+  SelectIcon,
+  SelectItem,
+  SelectItemIndicator,
+  SelectItemText,
+  SelectPortal,
+  SelectRoot,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport,
+  type AcceptableValue,
+} from 'reka-ui'
+import VWave from 'v-wave'
 
 const {
   items = [],
   disabled = false,
-  error,
+  name,
+  multiple = false,
   required = false,
   placeholder = 'Select an option',
 } = defineProps<{
@@ -17,134 +31,191 @@ const {
   }[]
   disabled?: boolean
   error?: string
+  name?: string
+  multiple?: boolean
   required?: boolean
   placeholder?: string
 }>()
 
 defineSlots<{
-  trigger: (active: boolean) => void
-  item: (item: { label: string, value: T }) => void
+  /**
+   * Override the default trigger button.
+   */
+  trigger: () => void
+  /**
+   * Override the default list item.
+   * @param item - The item object.
+   */
+  item: (item: { label: string; value: T }) => void
 }>()
 
-const modelValue = defineModel<T>()
+/**
+ * The value of the select field
+ */
+const modelValue = defineModel<T | T[]>()
+
+/**
+ * The open/close state of the select field
+ */
+const isOpen = defineModel<boolean>('open')
 
 const { createLocalWaveDirective } = VWave
 
 const { vWave } = createLocalWaveDirective({
   duration: 0.2,
 })
-
-const label = computed(() => items?.find(item => item.value === modelValue?.value)?.label)
 </script>
 
 <template>
-  <ODropdown
-    v-model="modelValue" :disabled aria-role="list" :class="$style['app-select-field']"
-    :menu-class="$style['app-select-field-menu']" :menu-mobile-overlay-class="$style['app-select-menu-backdrop']"
+  <SelectRoot
+    v-model:open="isOpen"
+    v-model="modelValue"
+    :name
+    :multiple
+    :required
   >
-    <template #trigger="{ active }">
-      <OButton
-        v-wave :required="required" variant="primary" :label="label ?? placeholder"
-        :icon-right-class="$style['select-icon']"
-        :icon-right="active ? 'material-symbols:expand-less-rounded' : 'material-symbols:expand-more-rounded'"
-        :class="[$style['app-select-field-input'], { [$style.error]: error, [$style.placeholder]: !label }]"
-      />
-    </template>
-    <ODropdownItem
-      v-for="(item, i) of items" :key="i" v-wave aria-role="listitem" :value="item.value"
-      :class="$style['app-select-field-item']"
-    >
-      <slot name="item" :label="item.label" :value="item.value">
-        {{ item.label }}
+    <SelectTrigger as-child :disabled>
+      <slot name="trigger">
+        <button
+          v-wave
+          :disabled
+          :class="[$style.trigger, { [$style.placeholder]: !modelValue }]"
+        >
+          <SelectValue :placeholder />
+          <SelectIcon as-child>
+            <AppIcon
+              :class="$style['select-icon']"
+              icon="material-symbols:expand-more-rounded"
+            />
+          </SelectIcon>
+        </button>
       </slot>
-    </ODropdownItem>
-  </ODropdown>
+    </SelectTrigger>
+
+    <SelectPortal>
+      <SelectContent position="item-aligned" :class="$style.content">
+        <SelectScrollUpButton />
+        <SelectViewport :class="$style.viewport">
+          <SelectItem
+            v-for="item in items"
+            :key="JSON.stringify(item)"
+            v-wave
+            :class="$style.item"
+            :value="item.value"
+          >
+            <SelectItemText>
+              <slot name="item" v-bind="item">
+                {{ item.label ?? item.value }}
+              </slot>
+            </SelectItemText>
+            <SelectItemIndicator />
+          </SelectItem>
+          <!-- <SelectGroup>
+            <SelectLabel />
+            <SelectItem>
+              <SelectItemText />
+              <SelectItemIndicator />
+            </SelectItem>
+          </SelectGroup>
+          <SelectSeparator /> -->
+        </SelectViewport>
+        <SelectScrollDownButton />
+        <SelectArrow />
+      </SelectContent>
+    </SelectPortal>
+  </SelectRoot>
 </template>
 
 <style lang="scss" module>
-.app-select-field {
-  --jjk-dropdown-item-color: var(--app-color-on-surface);
-  --jjk-dropdown-item-active-background-color: rgba(var(--app-color-on-surface-rgb), 0.1);
-  --jjk-dropdown-item-active-color: var(--app-color-on-surface);
-  --jjk-dropdown-item-font-size: var(--step-0);
-  --jjk-dropdown-item-hover-background-color: rgba(var(--app-color-on-surface-rgb), 0.05);
-  --jjk-dropdown-item-hover-color: var(--app-color-on-surface);
-  --jjk-dropdown-item-padding: var(--space-xs) var(--space-s);
+.item {
+  border-radius: var(--space-xs);
+  color: var(--app-color-on-surface);
+  padding: var(--space-xs) var(--space-s);
+  border: 0;
+  transition: 0.2s;
+  cursor: pointer;
+  outline: 1px solid transparent;
 
-  --jjk-dropdown-menu-background: var(--app-color-surface);
-  --jjk-dropdown-menu-border-radius: calc(var(--space-xs) * 1.2);
-  --jjk-dropdown-menu-padding: var(--space-3xs);
-  --jjk-dropdown-mobile-overlay-color: var(--app-color-surface);
-
-  .app-select-field-menu {
-    background-color: var(--app-color-surface);
-    box-shadow: 0 0 0 1px var(--app-color-outline);
-    margin-block-start: var(--space-2xs);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3xs);
-    padding: var(--space-3xs);
-  }
-
-  .app-select-field-item {
-    border-radius: var(--space-xs);
+  &:focus-visible {
+    background-color: rgba(var(--app-color-on-surface-rgb), 0.05);
     color: var(--app-color-on-surface);
+    border-color: transparent;
+    outline: 1px solid transparent;
+  }
+}
+
+.content {
+  background-color: var(--app-color-surface);
+  border-radius: calc(var(--space-xs) * 1.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px var(--app-color-outline);
+}
+
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-3xs);
+}
+
+.trigger {
+  background-color: transparent;
+  color: var(--app-color-on-surface);
+  border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
+  border-radius: var(--space-xs);
+  transition: 0.2s;
+  font-size: var(--step-0);
+  padding: var(--space-xs) var(--space-s);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
   }
 
-  .app-select-menu-backdrop {
-    backdrop-filter: blur(10px);
-  }
-
-  .app-select-field-input {
-    background-color: transparent;
+  &:hover:not[disabled] {
+    border-color: var(--app-color-secondary);
     color: var(--app-color-on-surface);
-    border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
-    border-radius: var(--space-xs);
-    transition: 0.2s;
-    font-size: var(--step-0);
-    padding: var(--space-m) var(--space-s);
+    background-color: var(--app-color-secondary-container);
+  }
+
+  &:active,
+  &:focus-within {
+    color: var(--app-color-on-surface);
+    border-color: var(--app-color-secondary);
+  }
+
+  &.error {
+    border-color: var(--app-color-error);
+    color: var(--app-color-error);
 
     &:hover {
-      border-color: var(--app-color-secondary);
-      color: var(--app-color-on-surface);
-      background-color: var(--app-color-secondary-container);
+      border-color: var(--app-color-error);
+      background-color: var(--app-color-error-container);
     }
 
     &:active,
     &:focus-within {
-      color: var(--app-color-on-surface);
-      border-color: var(--app-color-secondary);
-    }
-
-    &.error {
       border-color: var(--app-color-error);
-      color: var(--app-color-error);
-
-      &:hover {
-        border-color: var(--app-color-error);
-        background-color: var(--app-color-error-container);
-      }
-
-      &:active,
-      &:focus-within {
-        border-color: var(--app-color-error);
-      }
-
-      .select-icon {
-        color: var(--app-color-error);
-      }
-    }
-
-    &.placeholder {
-      color: rgba(var(--app-color-secondary-rgb), 0.7);
     }
 
     .select-icon {
-      font-size: var(--step-1);
-      margin-inline-end: 0;
-      color: rgba(var(--app-color-secondary-rgb), 0.7);
+      color: var(--app-color-error);
     }
+  }
+
+  &.placeholder {
+    color: rgba(var(--app-color-secondary-rgb), 0.7);
+  }
+
+  .select-icon {
+    font-size: var(--step-1);
+    margin-inline-end: 0;
+    color: rgba(var(--app-color-secondary-rgb), 0.7);
   }
 }
 </style>

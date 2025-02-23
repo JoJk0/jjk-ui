@@ -1,11 +1,16 @@
 <script lang="ts" setup>
-import { OButton } from '@oruga-ui/oruga-next'
 import { useMouseInElement } from '@vueuse/core'
 import VWave from 'v-wave'
 import { computed, getCurrentInstance, ref } from 'vue'
-import '~/setup'
 
-const { variant = 'secondary', icon, iconBefore, iconAfter } = defineProps<{
+const {
+  text,
+  variant = 'secondary',
+  icon,
+  iconBefore,
+  iconAfter,
+} = defineProps<{
+  text?: string
   variant?: 'primary' | 'secondary' | 'text'
   icon?: string
   iconBefore?: string
@@ -22,32 +27,56 @@ const buttonEl = ref(null)
 
 const instance = getCurrentInstance()
 
-const isIconButton = computed(() => !!(icon || iconBefore || iconAfter) && !instance?.slots.default?.())
+const isIconButton = computed(
+  () => !!(icon || iconBefore || iconAfter) && !instance?.slots.default?.(),
+)
 
-const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(buttonEl)
+const { elementX, elementY, elementWidth, elementHeight, isOutside } =
+  useMouseInElement(buttonEl)
 
-const shineXCss = computed(() => !isOutside.value ? `${(elementX.value / elementWidth.value) * 100}%` : undefined)
-const shineYCss = computed(() => !isOutside.value ? `${(elementY.value / elementHeight.value) * 100}%` : undefined)
+const shineXCss = computed(() =>
+  !isOutside.value
+    ? `${(elementX.value / elementWidth.value) * 100}%`
+    : undefined,
+)
+const shineYCss = computed(() =>
+  !isOutside.value
+    ? `${(elementY.value / elementHeight.value) * 100}%`
+    : undefined,
+)
 </script>
 
 <template>
-  <OButton
-    ref="buttonEl" v-wave
-    :icon-left-class="$style['icon-before']"
-    :icon-right-class="$style['icon-after']"
-    :icon-left="icon ?? iconBefore"
-    :icon-right="iconAfter"
-    :class="[$style['app-button'], $style[variant], { [$style['v-border-shine']]: !(isOutside && false), [$style['icon-button']]: isIconButton }]"
-    :wrapper-class="$style.wrapper" :label-class="$style.label"
+  <button
+    ref="buttonEl"
+    v-wave
+    tabindex="0"
+    :class="[
+      $style['app-button'],
+      $style[variant],
+      {
+        [$style['v-border-shine']]: !(isOutside && false),
+        [$style['icon-button']]: isIconButton,
+      },
+    ]"
+    @keydown.enter="$emit('click', $event)"
+    @keydown.space="$emit('click', $event)"
   >
-    <slot />
-  </OButton>
+    <AppIcon
+      v-if="icon ?? iconBefore"
+      :icon="icon ?? iconBefore!"
+      :class="$style['icon-before']"
+    />
+    <slot>{{ text }}</slot>
+    <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
+  </button>
 </template>
 
 <style lang="scss" module>
 .app-button {
   --jjk-button-border-radius: 1.5384615385em 2em;
-  --jjk-button-box-shadow: 0 0.5em 1em -0.125em rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --jjk-button-box-shadow:
+    0 0.5em 1em -0.125em rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
   --jjk-button-font-weight: 600;
   --jjk-button-padding: var(--space-xs) var(--space-m);
   --jjk-button-height: auto;
@@ -83,7 +112,11 @@ const shineYCss = computed(() => !isOutside.value ? `${(elementY.value / element
 
   &.secondary {
     background: var(--app-color-secondary-container)
-      linear-gradient(to top, var(--app-color-background), var(--app-color-background));
+      linear-gradient(
+        to top,
+        var(--app-color-background),
+        var(--app-color-background)
+      );
     color: var(--app-color-on-secondary-container);
     border-width: 0;
     border: 1px solid rgba(var(--app-color-outline-rgb), 0.2);

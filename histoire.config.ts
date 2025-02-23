@@ -3,13 +3,14 @@ import { HstVue } from '@histoire/plugin-vue'
 import { defineConfig } from 'histoire'
 
 export default defineConfig({
-  plugins: [HstVue(), HstPercy({
-    pptrWait: 1000,
-  })],
-  setupFile: 'histoire.setup.ts',
-  storyMatch: [
-    '**/*.stories.vue',
+  plugins: [
+    HstVue(),
+    HstPercy({
+      pptrWait: 1000,
+    }),
   ],
+  setupFile: 'histoire.setup.ts',
+  storyMatch: ['**/*.stories.vue'],
   tree: {
     groups: [
       {
@@ -19,7 +20,7 @@ export default defineConfig({
     ],
   },
   theme: {
-    title: 'jojko\'s UI',
+    title: "jojko's UI",
     logo: {
       square: './public/favicon.svg',
       dark: './public/favicon.svg',

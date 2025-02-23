@@ -13,23 +13,15 @@ import AppCard from './AppCard.vue'
 
 <template>
   <DialogRoot class="app-dialog">
-    <DialogTrigger
-      class="trigger"
-      as-child
-    >
+    <DialogTrigger class="trigger" as-child>
       <slot name="trigger" />
     </DialogTrigger>
     <DialogPortal>
       <DialogOverlay class="overlay" />
-      <DialogContent
-        class="content"
-      >
+      <DialogContent class="content">
         <AppCard>
           <slot />
-          <DialogClose
-            aria-label="Close"
-            as-child
-          >
+          <DialogClose aria-label="Close" as-child>
             <AppButton variant="text" icon="material-symbols:close-rounded" />
           </DialogClose>
         </AppCard>

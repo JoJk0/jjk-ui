@@ -7,13 +7,10 @@ const { size = 'medium' } = defineProps<{
 </script>
 
 <template>
-  <img :src="logo" class="app-logo" alt="Jojko's logo'" :class="size">
+  <img :src="logo" class="app-logo" alt="Jojko's logo'" :class="size" />
 </template>
 
 <style lang="scss" scoped>
-@use '~/theme/globals' as *;
-@use 'sass:color' as *;
-
 .app-logo {
   width: 1em;
   height: 1em;

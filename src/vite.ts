@@ -4,9 +4,11 @@ export interface Options {
   componentPrefix: string
 }
 
-export default (options: Options = {
-  componentPrefix: 'App',
-}) => ([
+export default (
+  options: Options = {
+    componentPrefix: 'App',
+  },
+) => [
   Components({
     dts: true,
     dirs: [],
@@ -21,4 +23,4 @@ export default (options: Options = {
       },
     ],
   }),
-])
+]

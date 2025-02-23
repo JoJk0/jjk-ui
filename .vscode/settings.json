@@ -41,10 +41,7 @@
   ],
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": false,
-  "cSpell.words": [
-    "reka",
-    "Vitesse"
-  ],
+  "cSpell.words": ["reka", "Vitesse"],
   "prettier.enable": false,
   "prettier.printWidth": 200,
   "prettier.semi": false,

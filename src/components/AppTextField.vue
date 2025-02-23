@@ -1,16 +1,12 @@
 <script lang="ts" setup>
-import { OInput } from '@oruga-ui/oruga-next';
-import '~/setup';
-
-const {
-  placeholder,
-  disabled = false,
-} = defineProps<{
+const { placeholder, disabled = false } = defineProps<{
   placeholder?: string
   disabled?: boolean
   error?: string
   iconBefore?: string
+  icon?: string
   iconAfter?: string
+  type?: string
 }>()
 
 // const emit = defineEmits({})
@@ -21,84 +17,92 @@ const { modelValue = '' } = defineModels<{
 </script>
 
 <template>
-  <OInput
-    v-bind="{ placeholder, disabled }"
-    v-model="modelValue"
-    :root-class="$style['app-text-field']"
-    :input-class="$style.input"
-    :class="{ [$style.interactive]: !disabled, [$style.error]: error }"
-    :icon-right-class="$style['icon-after']"
-    :icon-left-class="$style['icon-before']"
-    :icon="iconBefore"
-    :icon-right="iconAfter"
-  />
+  <div
+    :class="[
+      $style.wrapper,
+      { [$style.interactive]: !disabled, [$style.error]: error },
+    ]"
+  >
+    <AppIcon
+      v-if="iconBefore ?? icon"
+      :icon="iconBefore ?? icon!"
+      :class="$style['icon-before']"
+    />
+    <input
+      v-if="type !== 'textarea'"
+      v-bind="$attrs"
+      v-model="modelValue"
+      :class="$style.input"
+      :type
+      :disabled
+      :placeholder="placeholder"
+    />
+    <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
+  </div>
 </template>
 
 <style lang="scss" module>
-.app-text-field {
-  --jjk-input-background-color: transparent;
-  --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), 0.7);
-  --jjk-input-border-radius: var(--space-xs);
-  --jjk-input-border-width: 1px;
-  --jjk-input-color: rgba(var(--app-color-on-surface-rgb), 0.7);
-  --jjk-input-font-size: var(--step-0);
-  --jjk-input-padding: var(--space-m) var(--space-s);
-  --jjk-input-height: var(--space-xl);
-  --default-jjk-input-width: 100%;
-  --default-jjk-input-max-width: 100%;
-  --default-jjk-input-min-width: 0;
+.icon-before,
+.icon-after {
+  color: var(--jjk-input-color);
+  font-size: var(--step-1);
+}
 
-  .icon-before,
-  .icon-after {
-    color: var(--jjk-input-color);
-    font-size: var(--step-1);
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border-radius: var(--space-xs);
+  border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
+  width: fit-content;
+  padding-inline: var(--space-s);
+  transition: 0.2s;
+
+  &.interactive:hover {
+    border: 1px solid var(--app-color-secondary);
+    color: var(--app-color-on-surface);
+    background-color: var(--app-color-secondary-container);
   }
 
-  .input {
-    transition: 0.2s;
-    width: var(--jjk-input-width, var(--default-jjk-input-width));
-    max-width: var(--jjk-input-max-width, var(--default-jjk-input-max-width));
-    min-width: var(--jjk-input-min-width, var(--default-jjk-input-min-width));
+  &:focus-within {
+    outline: 2px solid var(--app-color-secondary);
+  }
+}
 
-    &::placeholder {
-      color: color-mix(in srgb, currentColor, transparent);
-    }
+.input {
+  padding-block: var(--space-xs);
+  color: var(--app-color-on-surface);
+  font-size: var(--step-0);
+  background-color: transparent;
+  transition: 0.2s;
+  border: 0;
+  outline: 1px solid transparent;
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--app-color-secondary), transparent);
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    color: rgba(var(--app-color-on-surface-rgb), 0.5);
+    border-color: rgba(var(--app-color-secondary-rgb), 0.5);
+  }
+
+  &.error {
+    --jjk-input-color: var(--app-color-error);
+    --jjk-input-border-color: var(--app-color-error);
 
     &.interactive {
       &:hover {
-        --jjk-input-border-color: var(--app-color-secondary);
+        --jjk-input-border-color: var(--app-color-error);
         --jjk-input-color: var(--app-color-on-surface);
-        --jjk-input-background-color: var(--app-color-secondary-container);
+        --jjk-input-background-color: var(--app-color-error-container);
       }
 
       &:active,
       &:focus-within {
         --jjk-input-color: var(--app-color-on-surface);
-        --jjk-input-border-color: var(--app-color-secondary);
-      }
-    }
-
-    &[disabled] {
-      --jjk-input-color: rgba(var(--app-color-on-surface-rgb), 0.5);
-      --jjk-input-border-color: rgba(var(--app-color-secondary-rgb), 0.5);
-    }
-
-    &.error {
-      --jjk-input-color: var(--app-color-error);
-      --jjk-input-border-color: var(--app-color-error);
-
-      &.interactive {
-        &:hover {
-          --jjk-input-border-color: var(--app-color-error);
-          --jjk-input-color: var(--app-color-on-surface);
-          --jjk-input-background-color: var(--app-color-error-container);
-        }
-
-        &:active,
-        &:focus-within {
-          --jjk-input-color: var(--app-color-on-surface);
-          --jjk-input-border-color: var(--app-color-error);
-        }
+        --jjk-input-border-color: var(--app-color-error);
       }
     }
   }

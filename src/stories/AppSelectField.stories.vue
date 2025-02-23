@@ -17,13 +17,14 @@ const items = ref([
       <AppSelectField v-model="modelValue" :items="items" />
     </Variant>
     <Variant title="With placeholder">
-      <AppSelectField v-model="modelValue" :items="items" placeholder="Placeholder" />
+      <AppSelectField
+        v-model="modelValue"
+        :items="items"
+        placeholder="Placeholder"
+      />
     </Variant>
     <Variant title="Disabled">
       <AppSelectField v-model="modelValue" :items="items" disabled />
-    </Variant>
-    <Variant title="With error">
-      <AppSelectField v-model="modelValue" :items="items" error="This is illegal" />
     </Variant>
     <Variant title="With custom item template">
       <AppSelectField v-model="modelValue" :items="items">
