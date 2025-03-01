@@ -2,7 +2,7 @@
   "name": "jjk-ui",
   "displayName": "JJK UI",
   "version": "1.2.0",
-  "packageManager": "pnpm@10.4.1",
+  "packageManager": "pnpm@10.5.2",
   "description": "A Vue UI library for jojko.tech and other personal projects",
   "type": "module",
   "keywords": [
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JoJk0/jjk-ui.git"
+    "url": "git+https://github.com/JoJk0/jjk-ui.git"
   },
   "author": {
     "name": "Jacob Janisz",
@@ -43,17 +43,17 @@
   "files": [
     "dist/*"
   ],
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+      "default": "./dist/index.js"
     },
     "./vite": {
       "types": "./dist/vite.d.ts",
-      "default": "./dist/vite.mjs"
+      "default": "./dist/vite.js"
     },
     "./styles": "./dist/jjk-ui.css",
     "./*": "./*"
@@ -73,7 +73,6 @@
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest",
     "up": "taze major -I",
-    "postinstall": "npx simple-git-hooks",
     "build": "vue-tsc --noEmit && vite build",
     "stories:build": "histoire build",
     "stories:test": "percy exec pnpm run build --",
@@ -83,18 +82,18 @@
     "commitlint": "commitlint --edit"
   },
   "peerDependencies": {
-    "vue": "^3.3.2"
+    "vue": "^3.5.13"
   },
   "peerDependenciesMeta": {
     "vue": {
-      "optional": false
+      "optional": true
     }
   },
   "dependencies": {
     "@iconify/vue": "^4.3.0",
     "@vueuse/core": "^12.7.0",
     "normalize.css": "^8.0.1",
-    "reka-ui": "^2.0.0",
+    "reka-ui": "^2.0.2",
     "v-wave": "^3.0.2"
   },
   "devDependencies": {
@@ -103,16 +102,16 @@
     "@commitlint/config-conventional": "^19.7.1",
     "@histoire/plugin-percy": "^1.0.0-alpha.2",
     "@histoire/plugin-vue": "^1.0.0-alpha.2",
-    "@iconify-json/carbon": "^1.2.7",
+    "@iconify-json/carbon": "^1.2.8",
     "@percy/cli": "^1.30.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@sxzz/eslint-config": "^5.1.1",
     "@sxzz/prettier-config": "^2.2.0",
-    "@types/node": "^22.13.5",
+    "@types/node": "^22.13.8",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue-macros/reactivity-transform": "^1.1.6",
-    "@vue-macros/volar": "^0.30.14",
+    "@vue-macros/volar": "^0.30.15",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
     "commitlint": "^19.7.1",
@@ -122,25 +121,35 @@
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "lint-staged": "^15.4.3",
-    "pnpm": "^10.4.1",
+    "oxc-transform": "^0.53.0",
+    "pnpm": "^10.5.2",
     "postcss": "^8.5.3",
-    "sass": "^1.85.0",
+    "sass": "^1.85.1",
     "semantic-release": "^24.2.3",
     "simple-git-hooks": "^2.11.1",
     "taze": "^18.6.0",
-    "typescript": "^5.7.3",
-    "unplugin-auto-import": "^19.1.0",
-    "unplugin-vue-components": "^28.4.0",
-    "unplugin-vue-macros": "^2.14.2",
-    "vite": "^6.1.1",
+    "typescript": "^5.8.2",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-isolated-decl": "^0.11.2",
+    "unplugin-vue-components": "^28.4.1",
+    "unplugin-vue-macros": "^2.14.5",
+    "vite": "^6.2.0",
     "vite-css-modules": "^1.8.4",
-    "vite-plugin-dts": "^4.5.0",
-    "vitest": "^3.0.6",
+    "vite-plugin-dts": "^4.5.1",
+    "vitest": "^3.0.7",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.4"
+    "vue-tsc": "^2.2.6"
   },
   "engines": {
     "node": ">=22.13.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@percy/core",
+      "esbuild",
+      "puppeteer",
+      "vue-demi"
+    ]
   },
   "lint-staged": {
     "*.ts": "eslint --fix",
