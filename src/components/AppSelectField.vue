@@ -1,4 +1,4 @@
-<script lang="ts" setup generic="T extends AcceptableValue">
+<script lang="ts" setup generic="T extends AcceptableValue, TMultiple extends boolean = false">
 import {
   SelectArrow,
   SelectContent,
@@ -32,7 +32,7 @@ const {
   disabled?: boolean
   error?: string
   name?: string
-  multiple?: boolean
+  multiple?: TMultiple
   required?: boolean
   placeholder?: string
 }>()
@@ -52,7 +52,7 @@ defineSlots<{
 /**
  * The value of the select field
  */
-const modelValue = defineModel<T | T[]>()
+const modelValue = defineModel<TMultiple extends true ? T[] : T>()
 
 /**
  * The open/close state of the select field
@@ -69,7 +69,7 @@ const { vWave } = createLocalWaveDirective({
 <template>
   <SelectRoot
     v-model:open="isOpen"
-    v-model="modelValue"
+    v-model="(modelValue as AcceptableValue)"
     :name
     :multiple
     :required
