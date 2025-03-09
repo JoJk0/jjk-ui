@@ -1,19 +1,22 @@
 <script lang="ts" setup>
-import { useMouseInElement } from '@vueuse/core'
-import VWave from 'v-wave'
-import { computed, getCurrentInstance, ref } from 'vue'
+import { useMouseInElement } from '@vueuse/core';
+import VWave from 'v-wave';
+import { computed, ref, type Component } from 'vue';
 
 const {
   text,
   variant = 'secondary',
   icon,
   iconBefore,
+  href,
   iconAfter,
 } = defineProps<{
   text?: string
   variant?: 'primary' | 'secondary' | 'text'
   icon?: string
   iconBefore?: string
+  href?: RouteLocationRaw
+  tag?: string | Component
   iconAfter?: string
 }>()
 
@@ -24,12 +27,6 @@ const { vWave } = createLocalWaveDirective({
 })
 
 const buttonEl = ref(null)
-
-const instance = getCurrentInstance()
-
-const isIconButton = computed(
-  () => !!(icon || iconBefore || iconAfter) && !instance?.slots.default?.(),
-)
 
 const { elementX, elementY, elementWidth, elementHeight, isOutside } =
   useMouseInElement(buttonEl)
@@ -47,16 +44,17 @@ const shineYCss = computed(() =>
 </script>
 
 <template>
-  <button
+  <component
+    :is="tag ?? 'button'"
     ref="buttonEl"
     v-wave
+    :href
     tabindex="0"
     :class="[
       $style['app-button'],
       $style[variant],
       {
         [$style['v-border-shine']]: !(isOutside && false),
-        [$style['icon-button']]: isIconButton,
       },
     ]"
     @keydown.enter="$emit('click', $event)"
@@ -69,7 +67,7 @@ const shineYCss = computed(() =>
     />
     <slot>{{ text }}</slot>
     <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
-  </button>
+  </component>
 </template>
 
 <style lang="scss" module>
@@ -85,6 +83,7 @@ const shineYCss = computed(() =>
   font-size: var(--step-0);
   transition: 0.2s;
   border-color: transparent;
+  border-width: 0;
   position: relative;
   padding: var(--jjk-button-padding);
   border-radius: var(--jjk-button-border-radius);
@@ -92,6 +91,9 @@ const shineYCss = computed(() =>
   font-weight: var(--jjk-button-font-weight);
   margin-left: 0;
   margin-right: 0;
+  display: flex;
+  gap: var(--space-2xs);
+  color: var(--app-color-secondary);
 
   &.v-border-shine {
     --v-border-shine-x: v-bind(shineXCss);
@@ -100,6 +102,7 @@ const shineYCss = computed(() =>
 
   &.primary {
     background: var(--app-gradient-primary);
+    color: var(--app-color-background);
     height: auto;
     &:after {
       background: radial-gradient(
@@ -139,15 +142,19 @@ const shineYCss = computed(() =>
     }
   }
 
-  &.icon-button {
-    .label {
-      display: none;
-    }
-    .icon-before,
-    .icon-after {
-      font-size: var(--step-1);
-      margin: 0;
-    }
+  &:has(.icon-before) {
+    padding-inline-start: var(--space-s);
+  }
+
+  &:has(.icon-after),
+  &:has(.icon-before):only-of-type {
+    padding-inline-end: var(--space-s);
+  }
+
+  .icon-before,
+  .icon-after {
+    font-size: var(--step-1);
+    margin: 0;
   }
 
   &:hover {
@@ -188,10 +195,6 @@ const shineYCss = computed(() =>
     &:before {
       border: 2px solid rgba(var(--app-color-secondary-rgb), 0.8);
     }
-  }
-
-  .label {
-    transition: 0.2s;
   }
 }
 </style>

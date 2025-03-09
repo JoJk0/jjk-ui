@@ -1,5 +1,9 @@
-<script lang="ts" setup>
-const { placeholder, disabled = false } = defineProps<{
+<script lang="ts" setup generic="T extends string | number">
+const {
+  placeholder,
+  disabled = false,
+  type,
+} = defineProps<{
   placeholder?: string
   disabled?: boolean
   error?: string
@@ -11,9 +15,22 @@ const { placeholder, disabled = false } = defineProps<{
 
 // const emit = defineEmits({})
 
-const { modelValue = '' } = defineModels<{
-  modelValue?: string
-}>()
+const [modelValue, modelValueModifiers] = defineModel<T>({
+  default: undefined,
+})
+
+const attrs = useAttrs()
+
+const style = useCssModule()
+
+const inputProps = computed(() => ({
+  ...attrs,
+  ...modelValueModifiers,
+  class: style.input,
+  type,
+  disabled,
+  placeholder,
+}))
 </script>
 
 <template>
@@ -28,16 +45,16 @@ const { modelValue = '' } = defineModels<{
       :icon="iconBefore ?? icon!"
       :class="$style['icon-before']"
     />
-    <input
-      v-if="type !== 'textarea'"
-      v-bind="$attrs"
+    <textarea
+      v-if="type === 'textarea'"
+      v-bind="inputProps"
       v-model="modelValue"
-      :class="$style.input"
-      :type
-      :disabled
-      :placeholder="placeholder"
     />
+    <input v-else v-bind="inputProps" v-model="modelValue" />
     <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
+    <div v-if="$slots.actions" :class="$style.actions">
+      <slot name="actions"></slot>
+    </div>
   </div>
 </template>
 
@@ -48,12 +65,33 @@ const { modelValue = '' } = defineModels<{
   font-size: var(--step-1);
 }
 
-.wrapper {
+.icon-before {
+  grid-area: 1 / 1 / 1 / 2;
+}
+
+.icon-after {
+  grid-area: 1 / 3 / 1 / 4;
+}
+
+.actions {
+  grid-area: 2 / 1;
+  padding-block-end: var(--space-xs);
   display: flex;
+  justify-content: end;
+  gap: var(--space-xs);
+}
+
+.wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: auto 1fr auto;
+  grid-auto-rows: 1fr auto;
+  gap: 10px 10px;
   align-items: center;
   gap: var(--space-xs);
   border-radius: var(--space-xs);
   border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
+  backdrop-filter: blur(1.5px);
   width: fit-content;
   padding-inline: var(--space-s);
   transition: 0.2s;
@@ -74,9 +112,11 @@ const { modelValue = '' } = defineModels<{
   color: var(--app-color-on-surface);
   font-size: var(--step-0);
   background-color: transparent;
+  resize: none;
   transition: 0.2s;
   border: 0;
   outline: 1px solid transparent;
+  flex: 1;
 
   &::placeholder {
     color: color-mix(in srgb, var(--app-color-secondary), transparent);

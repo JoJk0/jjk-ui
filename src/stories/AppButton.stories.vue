@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import AppButton from '~/components/AppButton.vue'
+import AppButton from '~/components/AppButton.vue';
 </script>
 
 <template>
-  <Story title="Button">
+  <Story title="Button" :layout="{ type: 'grid', width: 250 }">
     <Variant title="Primary Button">
       <AppButton variant="primary"> Primary button </AppButton>
     </Variant>
@@ -12,6 +12,14 @@ import AppButton from '~/components/AppButton.vue'
     </Variant>
     <Variant title="Text Button">
       <AppButton variant="text"> Text button </AppButton>
+    </Variant>
+    <Variant title="With icon before">
+      <AppButton icon="material-symbols:search-rounded">JJK button</AppButton>
+    </Variant>
+    <Variant title="With icon after">
+      <AppButton icon-after="material-symbols:search-rounded"
+        >JJK button</AppButton
+      >
     </Variant>
     <Variant title="Icon Button">
       <AppButton variant="text" icon="material-symbols:search-rounded" />

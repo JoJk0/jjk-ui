@@ -12,6 +12,7 @@ const { position = 'block-start' } = defineProps<{
   position?: 'block-start' | 'block-end' | 'inline-start' | 'inline-end'
   align?: 'start' | 'center' | 'end'
   ariaLabel?: string
+  avoidCollisions?: boolean
 }>()
 
 defineSlots<{
@@ -40,6 +41,7 @@ const isOpen = defineModel<boolean>('open', { default: false })
           v-bind="$attrs"
           as="div"
           :align
+          :avoid-collisions
           :position="finalPosition[position]"
           :align-offset="20"
           :aria-label
