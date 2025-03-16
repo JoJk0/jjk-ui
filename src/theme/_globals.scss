@@ -11,10 +11,20 @@ $variables: (
   secondary-container: rgba($winterEscape, 0.1),
   on-secondary-container: $winterEscape,
 
-  error: $firebrick,
+  error: $strawberryField,
   on-error: $tristesse,
-  error-container: rgba($firebrick, 0.1),
+  error-container: rgba($strawberryField, 0.1),
   on-error-container: $tristesse,
+
+  warning: $yellowVarnish,
+  on-warning: $tristesse,
+  warning-container: rgba($yellowVarnish, 0.1),
+  on-warning-container: $tristesse,
+
+  success: $feltGreen,
+  on-success: $tristesse,
+  success-container: rgba($feltGreen, 0.1),
+  on-success-container: $tristesse,
 
   background: $tristesse,
   on-background: $winterEscape,

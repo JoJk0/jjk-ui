@@ -6,7 +6,7 @@ const modelValue = ref('')
 </script>
 
 <template>
-  <Story title="Text Field">
+  <Story title="Text Field" :layout="{ type: 'grid', width: 280 }">
     <Variant title="Default">
       <AppTextField v-model="modelValue" />
     </Variant>
@@ -17,7 +17,10 @@ const modelValue = ref('')
       <AppTextField v-model="modelValue" disabled />
     </Variant>
     <Variant title="With error">
-      <AppTextField v-model="modelValue" error="This is illegal" />
+      <AppTextField v-model="modelValue" error />
+    </Variant>
+    <Variant title="Textarea">
+      <AppTextField v-model="modelValue" type="textarea" />
     </Variant>
     <Variant title="With icon before text">
       <AppTextField

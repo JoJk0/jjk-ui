@@ -6,7 +6,7 @@ const {
 } = defineProps<{
   placeholder?: string
   disabled?: boolean
-  error?: string
+  error?: boolean
   iconBefore?: string
   icon?: string
   iconAfter?: string
@@ -23,6 +23,13 @@ const attrs = useAttrs()
 
 const style = useCssModule()
 
+const { textarea, input } = useTextareaAutosize({
+  input: computed({
+    get: () => `${modelValue.value}`,
+    set: (val) => modelValue.value = typeof modelValue.value === 'number' ? (+val as T) : (val as T),
+  }),
+})
+
 const inputProps = computed(() => ({
   ...attrs,
   ...modelValueModifiers,
@@ -36,7 +43,7 @@ const inputProps = computed(() => ({
 <template>
   <div
     :class="[
-      $style.wrapper,
+      $style['app-text-field'],
       { [$style.interactive]: !disabled, [$style.error]: error },
     ]"
   >
@@ -47,8 +54,10 @@ const inputProps = computed(() => ({
     />
     <textarea
       v-if="type === 'textarea'"
+      ref="textarea"
       v-bind="inputProps"
-      v-model="modelValue"
+      v-model="input"
+      :class="$style.textarea"
     />
     <input v-else v-bind="inputProps" v-model="modelValue" />
     <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
@@ -81,7 +90,10 @@ const inputProps = computed(() => ({
   gap: var(--space-xs);
 }
 
-.wrapper {
+.app-text-field {
+  --jjk-text-field-color: var(--app-color-on-surface);
+  --jjk-text-field-border-color: rgba(var(--app-color-secondary-rgb), 0.7);
+
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: auto 1fr auto;
@@ -90,20 +102,48 @@ const inputProps = computed(() => ({
   align-items: center;
   gap: var(--space-xs);
   border-radius: var(--space-xs);
-  border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
+  border: 1px solid var(--jjk-text-field-border-color);
   backdrop-filter: blur(1.5px);
   width: fit-content;
   padding-inline: var(--space-s);
   transition: 0.2s;
 
   &.interactive:hover {
-    border: 1px solid var(--app-color-secondary);
-    color: var(--app-color-on-surface);
+    --jjk-text-field-border-color: var(--app-color-secondary);
+    --jjk-text-field-color: var(--app-color-on-surface);
     background-color: var(--app-color-secondary-container);
   }
 
   &:focus-within {
     outline: 2px solid var(--app-color-secondary);
+  }
+
+  &.error {
+    --jjk-text-field-color: var(--app-color-error);
+    --jjk-text-field-border-color: var(--app-color-error);
+
+    &.interactive {
+      &:hover {
+        --jjk-text-field-border-color: var(--app-color-error);
+        --jjk-text-field-color: var(--app-color-on-surface);
+        background-color: var(--app-color-error-container);
+      }
+
+      &:active,
+      &:focus-within {
+        --jjk-text-field-color: var(--app-color-on-surface);
+        --jjk-text-field-border-color: var(--app-color-error);
+      }
+    }
+  }
+}
+
+.textarea {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -111,6 +151,7 @@ const inputProps = computed(() => ({
   padding-block: var(--space-xs);
   color: var(--app-color-on-surface);
   font-size: var(--step-0);
+  font-family: var(--base-font-family);
   background-color: transparent;
   resize: none;
   transition: 0.2s;
@@ -126,25 +167,6 @@ const inputProps = computed(() => ({
     pointer-events: none;
     color: rgba(var(--app-color-on-surface-rgb), 0.5);
     border-color: rgba(var(--app-color-secondary-rgb), 0.5);
-  }
-
-  &.error {
-    --jjk-input-color: var(--app-color-error);
-    --jjk-input-border-color: var(--app-color-error);
-
-    &.interactive {
-      &:hover {
-        --jjk-input-border-color: var(--app-color-error);
-        --jjk-input-color: var(--app-color-on-surface);
-        --jjk-input-background-color: var(--app-color-error-container);
-      }
-
-      &:active,
-      &:focus-within {
-        --jjk-input-color: var(--app-color-on-surface);
-        --jjk-input-border-color: var(--app-color-error);
-      }
-    }
   }
 }
 </style>
