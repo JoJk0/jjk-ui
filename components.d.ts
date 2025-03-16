@@ -13,6 +13,7 @@ declare module 'vue' {
     AppChip: typeof import('./src/components/AppChip.vue')['default']
     AppDialog: typeof import('./src/components/AppDialog.vue')['default']
     AppIcon: typeof import('./src/components/AppIcon.vue')['default']
+    AppLoadingSpinner: typeof import('./src/components/AppLoadingSpinner.vue')['default']
     AppLogo: typeof import('./src/components/AppLogo.vue')['default']
     AppSelectField: typeof import('./src/components/AppSelectField.vue')['default']
     AppTextField: typeof import('./src/components/AppTextField.vue')['default']
