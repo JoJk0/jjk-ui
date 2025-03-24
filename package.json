@@ -106,7 +106,7 @@
     "@percy/cli": "^1.30.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@sxzz/eslint-config": "^5.1.1",
+    "@sxzz/eslint-config": "^6.1.0",
     "@sxzz/prettier-config": "^2.2.0",
     "@types/node": "^22.13.8",
     "@vitejs/plugin-vue": "^5.2.1",
