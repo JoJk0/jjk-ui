@@ -6,6 +6,7 @@
 
 export { default as AppButton } from '~/components/AppButton.vue'
 export { default as AppCard } from '~/components/AppCard.vue'
+export { default as AppCheckbox } from '~/components/AppCheckbox.vue'
 export { default as AppChip } from '~/components/AppChip.vue'
 export { default as AppDialog } from '~/components/AppDialog.vue'
 export { default as AppField } from '~/components/AppField.vue'

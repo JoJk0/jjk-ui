@@ -23,5 +23,10 @@ const modelValue = ref('')
         <AppTextField v-model="modelValue" error placeholder="Placeholder" />
       </AppField>
     </Variant>
+    <Variant title="Checkbox with error" label="Label">
+      <AppField v-model="modelValue" error="This is illegal" label="Label">
+        <AppCheckbox :model-value="true" name="checkbox" error placeholder="Placeholder" />
+      </AppField>
+    </Variant>
   </Story>
 </template>

@@ -25,7 +25,7 @@ const style = useCssModule()
 
 const { textarea, input } = useTextareaAutosize({
   input: computed({
-    get: () => `${modelValue.value}`,
+    get: () => `${modelValue.value ?? ''}`,
     set: (val) => modelValue.value = typeof modelValue.value === 'number' ? (+val as T) : (val as T),
   }),
 })
