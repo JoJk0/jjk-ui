@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppButton: typeof import('./src/components/AppButton.vue')['default']
     AppCard: typeof import('./src/components/AppCard.vue')['default']
+    AppCheckbox: typeof import('./src/components/AppCheckbox.vue')['default']
     AppChip: typeof import('./src/components/AppChip.vue')['default']
     AppDialog: typeof import('./src/components/AppDialog.vue')['default']
     AppField: typeof import('./src/components/AppField.vue')['default']

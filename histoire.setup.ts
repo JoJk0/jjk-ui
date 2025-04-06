@@ -1,5 +1,5 @@
 import { defineSetupVue3 } from '@histoire/plugin-vue'
-import '~/theme/index.scss'
+import '~/setup'
 
 import '~/histoire.css'
 

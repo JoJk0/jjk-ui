@@ -14,6 +14,12 @@ importers:
       '@vueuse/core':
         specifier: ^12.7.0
         version: 12.7.0(typescript@5.8.2)
+      css-houdini-squircle:
+        specifier: ^0.3.0
+        version: 0.3.0
+      css-paint-polyfill:
+        specifier: ^3.4.0
+        version: 3.4.0
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -2602,6 +2608,12 @@ packages:
   crypto-random-string@4.0.0:
     resolution: {integrity: sha512-x8dy3RnvYdlUcPOjkEHqozhiwzKNSq7GcPuXFbnyMOCHxX8V3OgIg/pYuabl2sbUPfIJaeAQB7PMOK8DFIdoRA==}
     engines: {node: '>=12'}
+
+  css-houdini-squircle@0.3.0:
+    resolution: {integrity: sha512-n2chEz56BlfBVuPD1PkdXQPIxP0Uys0vC4jIgaxCjFu8rkt0KVRDKyy41t1EDg2ZWEQkdX8AGKW3Vk7f3PgxZA==}
+
+  css-paint-polyfill@3.4.0:
+    resolution: {integrity: sha512-B89ymLgMZie41d+QrD//5RWnwykvru5H9Yzd/MMJIgPdVsKB7t4lxuhIAyzy5FnoUbb0MztagNVRe9dI7kMbiA==}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -8520,6 +8532,10 @@ snapshots:
   crypto-random-string@4.0.0:
     dependencies:
       type-fest: 1.4.0
+
+  css-houdini-squircle@0.3.0: {}
+
+  css-paint-polyfill@3.4.0: {}
 
   cssesc@3.0.0: {}
 
