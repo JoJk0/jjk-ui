@@ -17,6 +17,7 @@ const {
   iconBefore?: string
   href?: RouteLocationRaw
   tag?: string | Component
+  disabled?: boolean
   iconAfter?: string
 }>()
 
@@ -47,14 +48,15 @@ const shineYCss = computed(() =>
   <component
     :is="tag ?? 'button'"
     ref="buttonEl"
-    v-wave
+    v-wave="{ disabled }"
     :href
+    :disabled
     tabindex="0"
     :class="[
       $style['app-button'],
       $style[variant],
       {
-        [$style['v-border-shine']]: !(isOutside && false),
+        [$style['v-border-shine']]: !(isOutside && disabled),
       },
     ]"
     @keydown.enter="$emit('click', $event)"
@@ -78,6 +80,8 @@ const shineYCss = computed(() =>
   --jjk-button-font-weight: 600;
   --jjk-button-padding: var(--space-xs) var(--space-m);
   --jjk-button-height: auto;
+  --v-border-shine-x: 0;
+  --v-border-shine-y: 0;
 
   font-family: var(--base-font-family);
   font-size: var(--step-0);
@@ -95,6 +99,10 @@ const shineYCss = computed(() =>
   gap: var(--space-2xs);
   color: var(--app-color-secondary);
 
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   &.v-border-shine {
     --v-border-shine-x: v-bind(shineXCss);
     --v-border-shine-y: v-bind(shineYCss);
@@ -104,7 +112,7 @@ const shineYCss = computed(() =>
     background: var(--app-gradient-primary);
     color: var(--app-color-background);
     height: auto;
-    &:after {
+    &:not([disabled]):after {
       background: radial-gradient(
         circle at var(--v-border-shine-x) var(--v-border-shine-y),
         rgba(255, 255, 255, 0.6) 0%,
@@ -123,7 +131,7 @@ const shineYCss = computed(() =>
     color: var(--app-color-on-secondary-container);
     border-width: 0;
     border: 1px solid rgba(var(--app-color-outline-rgb), 0.2);
-    &:after {
+    &:not([disabled]):after {
       background: radial-gradient(
         circle at var(--v-border-shine-x) var(--v-border-shine-y),
         rgb(255, 255, 255) 0%,

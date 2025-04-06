@@ -13,6 +13,9 @@ import AppButton from '~/components/AppButton.vue';
     <Variant title="Text Button">
       <AppButton variant="text"> Text button </AppButton>
     </Variant>
+    <Variant title="Disabled">
+      <AppButton variant="primary" disabled> Disabled button </AppButton>
+    </Variant>
     <Variant title="With icon before">
       <AppButton icon="material-symbols:search-rounded">JJK button</AppButton>
     </Variant>
