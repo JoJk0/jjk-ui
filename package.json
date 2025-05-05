@@ -118,7 +118,7 @@
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
     "commitlint": "^19.7.1",
-    "eslint": "9.20.0",
+    "eslint": "9.26.0",
     "eslint-plugin-format": "^1.0.1",
     "histoire": "^1.0.0-alpha.2",
     "husky": "^9.1.7",
