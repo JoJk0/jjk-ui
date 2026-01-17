@@ -12,17 +12,18 @@ const { variant = 'raised' } = defineProps<{
 
 <style lang="scss" module>
 .app-card {
+  --app-card-padding: var(--space-m);
+  --app-card-corner-radius: 23px;
   background-color: var(--app-color-surface);
   backdrop-filter: blur(1px);
   color: var(--app-color-on-surface);
   mask-image: paint(squircle);
-  // border-radius: var(--space-m);
-  padding: var(--space-m);
+  padding: var(--app-card-padding);
   display: flex;
   gap: var(--space-2xs);
   flex-direction: column;
   --squircle-smooth: 0.5;
-  --squircle-radius: 23px;
+  --squircle-radius: var(--app-card-corner-radius);
   &:before {
     pointer-events: none;
     content: "";
@@ -30,7 +31,7 @@ const { variant = 'raised' } = defineProps<{
     display: inline-block;
     width: 100%;
     height: 100%;
-    translate: calc(var(--space-m) * -1) calc(var(--space-m) * -1);
+    translate: calc(var(--app-card-padding) * -1) calc(var(--app-card-padding) * -1);
     background: var(--app-color-outline);
     -webkit-mask-image: paint(squircle);
     mask-image: paint(squircle);
