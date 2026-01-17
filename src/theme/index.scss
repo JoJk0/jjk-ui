@@ -67,11 +67,15 @@ h6 {
   text-wrap: balance;
   letter-spacing: -0.05ch;
   &.gradiented {
+    --stretch-factor: 0.8;
     background: makePrimaryGradient(5deg, 0.5);
     color: transparent;
     width: fit-content;
     -webkit-background-clip: text;
     background-clip: text;
+    scale: 1 var(--stretch-factor);
+    transform-origin: top;
+    margin-block-end: calc(-1em * (1 - var(--stretch-factor)));
   }
   &.step-1 {
     font-size: var(--step-1);
