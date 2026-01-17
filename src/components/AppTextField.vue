@@ -25,8 +25,10 @@ const style = useCssModule()
 
 const { textarea, input } = useTextareaAutosize({
   input: computed({
-    get: () => `${modelValue.value ?? ''}`,
-    set: (val) => modelValue.value = typeof modelValue.value === 'number' ? (+val as T) : (val as T),
+    get: () => String(modelValue.value ?? ''),
+    set: (val) =>
+      (modelValue.value =
+        typeof modelValue.value === 'number' ? (+val as T) : (val as T)),
   }),
 })
 
@@ -46,6 +48,7 @@ const inputProps = computed(() => ({
       $style['app-text-field'],
       { [$style.interactive]: !disabled, [$style.error]: error },
     ]"
+    @click="textarea?.focus()"
   >
     <AppIcon
       v-if="iconBefore ?? icon"
@@ -84,7 +87,7 @@ const inputProps = computed(() => ({
 
 .actions {
   grid-area: 2 / 1;
-  padding-block-end: var(--space-xs);
+  padding-block-end: var(--space-s);
   display: flex;
   justify-content: end;
   gap: var(--space-xs);
@@ -92,21 +95,37 @@ const inputProps = computed(() => ({
 
 .app-text-field {
   --jjk-text-field-color: var(--app-color-on-surface);
-  --jjk-text-field-border-color: rgba(var(--app-color-secondary-rgb), 0.7);
+  --jjk-text-field-border-color: rgba(var(--app-color-secondary-rgb), 0.3);
+  --jjk-text-field-corner-radius: 20px;
+  --jjk-text-field-padding: var(--space-s);
 
+  --squircle-smooth: 0.5;
+  --squircle-radius: var(--jjk-text-field-corner-radius);
+
+  mask-image: paint(squircle);
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: auto 1fr auto;
   grid-auto-rows: 1fr auto;
-  gap: 10px 10px;
   align-items: center;
   gap: var(--space-xs);
-  border-radius: var(--space-xs);
-  border: 1px solid var(--jjk-text-field-border-color);
   backdrop-filter: blur(1.5px);
   width: fit-content;
-  padding-inline: var(--space-s);
+  padding-inline: var(--jjk-text-field-padding);
   transition: 0.2s;
+  &:before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: var(--jjk-text-field-border-color);
+    -webkit-mask-image: paint(squircle);
+    mask-image: paint(squircle);
+    --squircle-outline: 1px;
+  }
 
   &.interactive:hover {
     --jjk-text-field-border-color: var(--app-color-secondary);
@@ -115,7 +134,11 @@ const inputProps = computed(() => ({
   }
 
   &:focus-within {
+    --jjk-text-field-border-color: var(--app-color-secondary);
     outline: 2px solid var(--app-color-secondary);
+    &:before {
+      --squircle-outline: 2px;
+    }
   }
 
   &.error {
@@ -148,7 +171,7 @@ const inputProps = computed(() => ({
 }
 
 .input {
-  padding-block: var(--space-xs);
+  padding-block: var(--jjk-text-field-padding);
   color: var(--app-color-on-surface);
   font-size: var(--step-0);
   font-family: var(--base-font-family);
