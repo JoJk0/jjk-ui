@@ -1201,8 +1201,8 @@ var cr = 2.05, lr = (e, t, n) => {
 	}, { variant: "secondary" }),
 	setup(e) {
 		ve((e) => ({
-			v3d5d5845: p.value,
-			v3d5dcca4: m.value
+			v20b2d520: p.value,
+			v20b1ec62: m.value
 		}));
 		let { createLocalWaveDirective: t } = pr, { vWave: n } = t({ duration: .2 }), r = M(null), { elementX: i, elementY: a, elementWidth: o, elementHeight: u, isOutside: d } = Pe(r), p = s(() => d.value ? void 0 : `${i.value / o.value * 100}%`), m = s(() => d.value ? void 0 : `${a.value / u.value * 100}%`);
 		return (e, t) => {
