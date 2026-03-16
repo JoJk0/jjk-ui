@@ -26,6 +26,6 @@ jobs:
       - name: Install
         run: pnpm i
 
-      - run: pnpm percy exec pnpm run story:build
+      - run: pnpm percy exec pnpm run stories:build
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
