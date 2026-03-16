@@ -101,8 +101,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.7.2",
-    "@commitlint/cli": "^20.4.4",
-    "@commitlint/config-conventional": "^20.4.4",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@histoire/plugin-percy": "^1.0.0-beta.1",
     "@histoire/plugin-vue": "^1.0.0-beta.1",
     "@iconify-json/carbon": "^1.2.19",
@@ -117,14 +117,14 @@
     "@vue-macros/volar": "^3.1.2",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.27",
-    "commitlint": "^20.4.4",
+    "commitlint": "^20.5.0",
     "eslint": "9.20.0",
     "eslint-plugin-format": "^2.0.1",
     "histoire": "^1.0.0-beta.1",
     "husky": "^9.1.7",
-    "jsdom": "^28.1.0",
+    "jsdom": "^29.0.0",
     "lint-staged": "^16.4.0",
-    "oxc-transform": "^0.119.0",
+    "oxc-transform": "^0.120.0",
     "pnpm": "^10.32.1",
     "postcss": "^8.5.8",
     "sass": "^1.98.0",
@@ -163,6 +163,11 @@
   "readme": "./README.md",
   "sponsor": {
     "url": "https://github.com/sponsors/JoJk0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "provenance": true
   },
   "badges": [
     {
