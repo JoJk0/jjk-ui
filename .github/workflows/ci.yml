@@ -12,13 +12,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: main
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v6
         with:
-          node-version: '22'
-      - run: npm install --save-dev @percy/cli
-      - run: npx percy exec npm run build
+          node-version: ${{ matrix.node_version }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - run: pnpm percy exec pnpm run build
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
