@@ -145,3 +145,84 @@ a {
   width: 100%;
   height: 2px;
 }
+
+/* Shapes */
+.app-shape-squircle {
+  --default-app-shape-squircle-border-width: 1px;
+  --default-app-shape-squircle-corner-radius: var(--space-3xs);
+  --default-app-shape-squircle-corner-radius-2: var(--app-shape-squircle-corner-radius, var(--default-app-shape-squircle-corner-radius));
+  --default-app-shape-squircle-border-color: var(--app-color-outline);
+
+  --_b: var(--app-shape-squircle-border-width, var(--default-app-shape-squircle-border-width));
+
+  --_r: clamp(0%, calc(var(--app-shape-squircle-corner-radius, var(--default-app-shape-squircle-corner-radius)) * sqrt(2)), 25%);
+  --_r2: clamp(0%, calc(var(--app-shape-squircle-corner-radius-2, var(--default-app-shape-squircle-corner-radius-2)) * sqrt(2)), 25%);
+
+  --_v: calc(var(--_r) * (1 - sqrt(2) / 4));
+  --_v2: calc(var(--_r2) * (1 - sqrt(2) / 4));
+
+  --_p: calc(var(--_v) - var(--_r) / 2);
+  --_p2: calc(var(--_v2) - var(--_r2) / 2);
+
+
+  --squircle-shape:
+    from calc(var(--_v2) + var(--_b)) calc(var(--_p2) + var(--_b)),
+    curve to 50% var(--_b) with calc(var(--_r2) + var(--_b)) var(--_b),
+
+
+    curve to calc(100% - var(--_v) - var(--_b)) calc(var(--_p) + var(--_b)) with calc(100% - var(--_r) - var(--_b)) var(--_b),
+    curve to calc(100% - var(--_p) - var(--_b)) calc(var(--_v) + var(--_b)) with calc(100% - 2 * var(--_p) - var(--_b)) calc(2 * var(--_p) + var(--_b)),
+    curve to calc(100% - var(--_b)) 50% with calc(100% - var(--_b)) calc(var(--_r) + var(--_b)),
+
+
+    curve to calc(100% - var(--_p2) - var(--_b)) calc(100% - var(--_v2) - var(--_b)) with calc(100% - var(--_b)) calc(100% - var(--_r2) - var(--_b)),
+    curve to calc(100% - var(--_v2) - var(--_b)) calc(100% - var(--_p2) - var(--_b)) with calc(100% - 2 * var(--_p2) - var(--_b)) calc(100% - 2 * var(--_p2) - var(--_b)),
+    curve to 50% calc(100% - var(--_b)) with calc(100% - var(--_r2) - var(--_b)) calc(100% - var(--_b)),
+
+
+    curve to calc(var(--_v) + var(--_b)) calc(100% - var(--_p) - var(--_b)) with calc(var(--_r) + var(--_b)) calc(100% - var(--_b)),
+    curve to calc(var(--_p) + var(--_b)) calc(100% - var(--_v) - var(--_b)) with calc(2 * var(--_p) + var(--_b)) calc(100% - 2 * var(--_p) - var(--_b)),
+    curve to var(--_b) 50% with var(--_b) calc(100% - var(--_r) - var(--_b)),
+
+
+    curve to calc(var(--_p2) + var(--_b)) calc(var(--_v2) + var(--_b)) with var(--_b) calc(var(--_r2) + var(--_b)),
+    curve to calc(var(--_v2) + var(--_b)) calc(var(--_p2) + var(--_b)) with calc(2 * var(--_p2) + var(--_b)) calc(2 * var(--_p2) + var(--_b));
+
+  --squircle-shape-no-border:
+    from calc(var(--_v2)) calc(var(--_p2)),
+    curve to 50% 0% with calc(var(--_r2)) 0%,
+
+
+    curve to calc(100% - var(--_v)) calc(var(--_p)) with calc(100% - var(--_r)) 0%,
+    curve to calc(100% - var(--_p)) calc(var(--_v)) with calc(100% - 2 * var(--_p)) calc(2 * var(--_p)),
+    curve to 100% 50% with 100% calc(var(--_r)),
+
+
+    curve to calc(100% - var(--_p2)) calc(100% - var(--_v2)) with 100% calc(100% - var(--_r2)),
+    curve to calc(100% - var(--_v2)) calc(100% - var(--_p2)) with calc(100% - 2 * var(--_p2)) calc(100% - 2 * var(--_p2)),
+    curve to 50% 100% with calc(100% - var(--_r2)) 100%,
+
+
+    curve to calc(var(--_v)) calc(100% - var(--_p)) with calc(var(--_r)) 100%,
+    curve to calc(var(--_p)) calc(100% - var(--_v)) with calc(2 * var(--_p)) calc(100% - 2 * var(--_p)),
+    curve to 0% 50% with 0% calc(100% - var(--_r)),
+
+
+    curve to calc(var(--_p2)) calc(var(--_v2)) with 0% calc(var(--_r2)),
+    curve to calc(var(--_v2)) calc(var(--_p2)) with calc(2 * var(--_p2)) calc(2 * var(--_p2));
+
+  clip-path: shape(var(--squircle-shape));
+
+  &:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: var(--app-shape-squircle-border-width, var(--default-app-shape-squircle-border-width));
+    background: var(--app-shape-squircle-border-color, var(--default-app-shape-squircle-border-color));
+    clip-path: shape(evenodd var(--squircle-shape),
+        move to calc(0%) calc(0%),
+        hline to calc(100%),
+        vline to calc(100%),
+        hline to calc(0%));
+  }
+}

@@ -46,6 +46,8 @@ const inputProps = computed(() => ({
   <div
     :class="[
       $style['app-text-field'],
+      'app-shape-squircle',
+      $style.outerBorder,
       { [$style.interactive]: !disabled, [$style.error]: error },
     ]"
     @click="textarea?.focus()"
@@ -96,13 +98,13 @@ const inputProps = computed(() => ({
 .app-text-field {
   --jjk-text-field-color: var(--app-color-on-surface);
   --jjk-text-field-border-color: rgba(var(--app-color-secondary-rgb), 0.3);
-  --jjk-text-field-corner-radius: 20px;
-  --jjk-text-field-padding: var(--space-s);
+  --jjk-text-field-corner-radius: var(--space-xs);
+  --jjk-text-field-padding: var(--space-xs);
 
-  --squircle-smooth: 0.5;
-  --squircle-radius: var(--jjk-text-field-corner-radius);
+  --app-shape-squircle-border-width: 1px;
+  --app-shape-squircle-corner-radius: var(--jjk-text-field-corner-radius);
+  --app-shape-squircle-border-color: var(--jjk-text-field-border-color);
 
-  mask-image: paint(squircle);
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: auto 1fr auto;
@@ -111,21 +113,18 @@ const inputProps = computed(() => ({
   gap: var(--space-xs);
   backdrop-filter: blur(1.5px);
   width: fit-content;
-  padding-inline: var(--jjk-text-field-padding);
-  transition: 0.2s;
-  &:before {
-    pointer-events: none;
-    content: '';
-    position: absolute;
-    inset: 0;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background: var(--jjk-text-field-border-color);
-    -webkit-mask-image: paint(squircle);
-    mask-image: paint(squircle);
-    --squircle-outline: 1px;
+
+  &.outerBorder {
+    padding-inline: calc(var(--jjk-text-field-padding) + var(--app-shape-squircle-border-width));
+    padding-block: var(--app-shape-squircle-border-width);
+    margin: calc(var(--app-shape-squircle-border-width) * -1);
+    clip-path: shape(var(--squircle-shape-no-border));
+
+    &:before {
+      inset: 0;
+    }
   }
+
 
   &.interactive:hover {
     --jjk-text-field-border-color: var(--app-color-secondary);
@@ -136,9 +135,7 @@ const inputProps = computed(() => ({
   &:focus-within {
     --jjk-text-field-border-color: var(--app-color-secondary);
     outline: 2px solid var(--app-color-secondary);
-    &:before {
-      --squircle-outline: 2px;
-    }
+    --app-shape-squircle-border-width: 2px;
   }
 
   &.error {
@@ -189,7 +186,7 @@ const inputProps = computed(() => ({
   &[disabled] {
     pointer-events: none;
     color: rgba(var(--app-color-on-surface-rgb), 0.5);
-    border-color: rgba(var(--app-color-secondary-rgb), 0.5);
+    --jjk-text-field-border-color: rgba(var(--app-color-secondary-rgb), 0.5);
   }
 }
 </style>

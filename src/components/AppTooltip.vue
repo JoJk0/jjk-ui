@@ -6,7 +6,8 @@ import {
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-} from 'reka-ui'
+} from 'reka-ui';
+import AppCard from './AppCard.vue';
 
 const { position = 'block-start' } = defineProps<{
   position?: 'block-start' | 'block-end' | 'inline-start' | 'inline-end'
@@ -42,13 +43,13 @@ const isOpen = defineModel<boolean>('open', { default: false })
           as="div"
           :align
           :avoid-collisions
-          :position="finalPosition[position]"
+          :side="finalPosition[position]"
           :align-offset="20"
           :aria-label
           :class="[$attrs.class, $style['app-tooltip']]"
         >
-          <TooltipArrow :class="$style.arrow" />
-          <slot />
+          <AppCard :class="$style['card']"><slot /></AppCard>
+        <TooltipArrow :class="$style.arrow" />
         </TooltipContent>
       </TooltipPortal>
     </TooltipRoot>
@@ -60,23 +61,46 @@ const isOpen = defineModel<boolean>('open', { default: false })
   --jjk-tooltip-background-color: var(--app-color-secondary);
   --jjk-tooltip-color: var(--app-color-on-secondary);
   --jjk-tooltip-padding: var(--space-2xs) var(--space-s);
-  --jjk-tooltip-border-radius: var(--space-s);
+  --jjk-tooltip-corner-radius: var(--space-2xs);
   --jjk-tooltip-font-size: var(--step--1);
   --jjk-tooltip-font-weight: 600;
+  --jjk-tooltip-max-width: 25em;
 
-  background-color: var(--jjk-tooltip-background-color);
-  color: var(--jjk-tooltip-color);
-  font-size: var(--jjk-tooltip-font-size);
-  padding: var(--jjk-tooltip-padding);
-  font-weight: var(--jjk-tooltip-font-weight);
-  border-radius: var(--jjk-tooltip-border-radius);
-  border: 1px solid var(--app-color-outline);
   transform-origin: var(--reka-tooltip-content-transform-origin);
   animation: slideIn 0.2s ease-out;
+  box-shadow: var(--app-elevation-float);
+  border-radius: var(--jjk-tooltip-corner-radius);
+  max-width: var(--jjk-tooltip-max-width);
+
+  .card {
+    --app-card-padding: var(--jjk-tooltip-padding);
+    --app-shape-squircle-corner-radius: var(--jjk-tooltip-corner-radius);
+    font-size: var(--jjk-tooltip-font-size);
+    font-weight: var(--jjk-tooltip-font-weight);
+    color: var(--jjk-tooltip-color);
+    background-color: var(--jjk-tooltip-background-color);
+  }
 
   .arrow {
     fill: var(--jjk-tooltip-background-color);
     stroke: var(--app-color-outline);
+    --arrow-border-canceller: hsl(from var(--app-color-outline) calc(255 - h) calc(255 - s) calc(255 - l));
+  }
+  &[data-side='top'] .arrow {
+    border-block-start: 1px solid var(--arrow-border-canceller);
+    translate: 0 -1px;
+  }
+  &[data-side='bottom'] .arrow {
+    border-block-end: 1px solid var(--arrow-border-canceller);
+    translate: 0 -1px;
+  }
+  &[data-side='left'] .arrow {
+    border-inline-start: 1px solid var(--arrow-border-canceller);
+    translate: 1px 0;
+  }
+  &[data-side='right'] .arrow {
+    border-inline-end: 1px solid var(--arrow-border-canceller);
+    translate: -1px 0;
   }
 }
 
