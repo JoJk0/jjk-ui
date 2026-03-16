@@ -8,6 +8,7 @@ const { size = 'medium', transparent = false } = defineProps<{
 <template>
   <div
     :class="[
+      'app-shape-squircle',
       $style['app-chip'],
       $style[size],
       { [$style.transparent]: transparent },
@@ -21,17 +22,18 @@ const { size = 'medium', transparent = false } = defineProps<{
 .app-chip {
   background-color: var(--app-color-secondary);
   color: var(--app-color-on-secondary);
-  border-radius: 2em;
-  padding: var(--space-2xs) var(--space-xs);
+  padding: var(--space-3xs) var(--space-2xs);
   font-size: var(--step--1);
   font-weight: 600;
   width: fit-content;
   display: flex;
   gap: 1em;
+  position: relative;
+  --app-shape-squircle-corner-radius: var(--space-3xs);
 
   &.small {
     font-size: var(--step--2);
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-3xs) var(--space-2xs);
   }
   &.large {
     font-size: var(--step-0);

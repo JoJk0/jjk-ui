@@ -31,7 +31,9 @@
     "**/*.d.ts",
     "src/**/*.vue",
     "env.d.ts",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "histoire.config.ts",
+    "histoire.setup.ts"
   ],
   "exclude": ["dist", "node_modules"]
 }

@@ -93,7 +93,6 @@
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "@vueuse/core": "^14.2.1",
-    "css-houdini-squircle": "^0.3.0",
     "css-paint-polyfill": "^3.4.0",
     "normalize.css": "^8.0.1",
     "reka-ui": "^2.9.2",

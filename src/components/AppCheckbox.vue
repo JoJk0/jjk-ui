@@ -22,6 +22,7 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
     v-model="modelValue"
     :class="[
       $style['app-checkbox'],
+      'app-shape-squircle',
       {
         [$style.disabled]: disabled,
         [$style.indeterminate]: modelValue === 'indeterminate',
@@ -46,7 +47,6 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
   width: var(--step-1);
   height: var(--step-1);
   border: 0;
-  mask-image: paint(squircle);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,16 +72,6 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
   &.disabled {
     pointer-events: none;
     opacity: 0.5;
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    width: inherit;
-    height: inherit;
-    background: var(--app-color-outline);
-    mask-image: paint(squircle);
-    --squircle-outline: 1px;
   }
   .indicator {
     width: inherit;

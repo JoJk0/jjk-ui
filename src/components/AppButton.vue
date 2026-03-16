@@ -53,10 +53,12 @@ const shineYCss = computed(() =>
     :disabled
     tabindex="0"
     :class="[
+      'app-shape-squirdcle',
       $style['app-button'],
       $style[variant],
       {
         [$style['v-border-shine']]: !(isOutside && disabled),
+        [$style['disabled']]: disabled,
       },
     ]"
     @keydown.enter="$emit('click', $event)"
@@ -83,6 +85,9 @@ const shineYCss = computed(() =>
   --v-border-shine-x: 0;
   --v-border-shine-y: 0;
 
+  --app-shape-squircle-corner-radius: 0.5em;
+  --app-shape-squircle-corner-radius-2: 1.2em;
+
   font-family: var(--base-font-family);
   font-size: var(--step-0);
   transition: var(--app-motion-standard);
@@ -96,10 +101,11 @@ const shineYCss = computed(() =>
   margin-left: 0;
   margin-right: 0;
   display: flex;
+  align-items: center;
   gap: var(--space-2xs);
   color: var(--app-color-secondary);
 
-  &[disabled] {
+  &.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
@@ -112,7 +118,7 @@ const shineYCss = computed(() =>
     background: var(--app-gradient-primary);
     color: var(--app-color-background);
     height: auto;
-    &:not([disabled]):after {
+    &:not(.disabled):after {
       background: radial-gradient(
         circle at var(--v-border-shine-x) var(--v-border-shine-y),
         rgba(255, 255, 255, 0.6) 0%,
@@ -177,6 +183,10 @@ const shineYCss = computed(() =>
       rotate: 1deg;
       scale: 1.05;
     }
+
+    &:before {
+      border: 2px solid rgba(var(--app-color-secondary-rgb), 0.2);
+    }
   }
 
   &:after {
@@ -199,6 +209,7 @@ const shineYCss = computed(() =>
   }
 
   &:active,
+  &.active,
   &:focus-within {
     &:before {
       border: 2px solid rgba(var(--app-color-secondary-rgb), 0.8);

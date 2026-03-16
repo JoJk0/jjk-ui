@@ -14,9 +14,6 @@ importers:
       '@vueuse/core':
         specifier: ^14.2.1
         version: 14.2.1(vue@3.5.30(typescript@5.9.3))
-      css-houdini-squircle:
-        specifier: ^0.3.0
-        version: 0.3.0
       css-paint-polyfill:
         specifier: ^3.4.0
         version: 3.4.0
@@ -3318,9 +3315,6 @@ packages:
 
   css-class-positions@1.0.0:
     resolution: {integrity: sha512-EyOWsNQ9he35D7iTc89TFt8BFZVAsoJ6s42O3YHS70KuwOPltOkcslrzwaAGvh+++tXj2t6t4yIwQQq82KTuTA==}
-
-  css-houdini-squircle@0.3.0:
-    resolution: {integrity: sha512-n2chEz56BlfBVuPD1PkdXQPIxP0Uys0vC4jIgaxCjFu8rkt0KVRDKyy41t1EDg2ZWEQkdX8AGKW3Vk7f3PgxZA==}
 
   css-paint-polyfill@3.4.0:
     resolution: {integrity: sha512-B89ymLgMZie41d+QrD//5RWnwykvru5H9Yzd/MMJIgPdVsKB7t4lxuhIAyzy5FnoUbb0MztagNVRe9dI7kMbiA==}
@@ -9775,8 +9769,6 @@ snapshots:
       type-fest: 1.4.0
 
   css-class-positions@1.0.0: {}
-
-  css-houdini-squircle@0.3.0: {}
 
   css-paint-polyfill@3.4.0: {}
 
