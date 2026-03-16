@@ -85,7 +85,7 @@ const shineYCss = computed(() =>
 
   font-family: var(--base-font-family);
   font-size: var(--step-0);
-  transition: 0.2s;
+  transition: var(--app-motion-standard);
   border-color: transparent;
   border-width: 0;
   position: relative;

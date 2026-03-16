@@ -132,7 +132,7 @@ const { vWave } = createLocalWaveDirective({
   color: var(--app-color-on-surface);
   padding: var(--space-xs) var(--space-s);
   border: 0;
-  transition: 0.2s;
+  transition: var(--app-motion-standard);
   cursor: pointer;
   outline: 1px solid transparent;
 
@@ -163,7 +163,7 @@ const { vWave } = createLocalWaveDirective({
   color: var(--app-color-on-surface);
   border: 1px solid rgba(var(--app-color-secondary-rgb), 0.7);
   border-radius: var(--space-xs);
-  transition: 0.2s;
+  transition: var(--app-motion-standard);
   font-size: var(--step-0);
   padding: var(--space-xs) var(--space-s);
   display: flex;
@@ -177,7 +177,7 @@ const { vWave } = createLocalWaveDirective({
     pointer-events: none;
   }
 
-  &:hover:not[disabled] {
+  &:hover:not([disabled]) {
     border-color: var(--app-color-secondary);
     color: var(--app-color-on-surface);
     background-color: var(--app-color-secondary-container);
@@ -193,7 +193,7 @@ const { vWave } = createLocalWaveDirective({
     border-color: var(--app-color-error);
     color: var(--app-color-error);
 
-    &:hover {
+    &:hover:not([disabled]) {
       border-color: var(--app-color-error);
       background-color: var(--app-color-error-container);
     }

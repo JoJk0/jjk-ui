@@ -52,7 +52,8 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
   justify-content: center;
   align-items: center;
   color: var(--app-color-secondary);
-  transition: 0.2s;
+  transition: var(--app-motion-standard);
+  position: relative;
   &:hover {
     filter: brightness(0.8);
   }

@@ -177,7 +177,7 @@ const inputProps = computed(() => ({
   font-family: var(--base-font-family);
   background-color: transparent;
   resize: none;
-  transition: 0.2s;
+  transition: var(--app-motion-standard);
   border: 0;
   outline: 1px solid transparent;
   flex: 1;
