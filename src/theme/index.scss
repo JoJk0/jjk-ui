@@ -1,25 +1,19 @@
-@use 'globals' as *;
-@use 'colours' as *;
-@use 'mixins' as *;
-@use 'transitions' as *;
+@use "globals" as *;
+@use "colours" as *;
+@use "mixins" as *;
+@use "motion" as *;
+@use "elevation" as *;
 
-@use 'fluid-scale' as *;
-@use 'fluid-space' as *;
-
-// @use '@oruga-ui/theme-oruga/dist/scss/oruga-vars.scss' as *;
+@use "fluid-scale" as *;
+@use "fluid-space" as *;
 
 $primary: $plungePool;
-// @use '@oruga-ui/theme-oruga/dist/scss/oruga.scss' with (
-//   $primary-invert: #0a121e,
-//   $secondary: #6c757d,
-//   $secondary-invert: $white,
-//   $prefix: 'jjk-',
-// );
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
 
 :root {
   --base-font-family: #{$fontFamily};
+
   --jjk-focus: color-mix(in srgb, #{$plungePool}, transparent 50%);
 
   --app-gradient-primary: linear-gradient(15deg, #{$orchid}, #{$plungePool});
@@ -39,6 +33,7 @@ body,
   font-family: var(--base-font-family);
   font-size: var(--step-0);
   line-height: 1.5;
+  color-scheme: light dark;
 }
 
 * {
@@ -66,7 +61,7 @@ h6 {
   line-height: 1.2;
   text-wrap: balance;
   letter-spacing: -0.05ch;
-  &.gradiented {
+  &.gradiented, &:is(.htw-prose :is(h1, h2, h3)) {
     --stretch-factor: 0.8;
     background: makePrimaryGradient(5deg, 0.5);
     color: transparent;
@@ -80,13 +75,13 @@ h6 {
   &.step-1 {
     font-size: var(--step-1);
   }
-  &.step-2 {
+  &.step-2, &:is(.htw-prose h3) {
     font-size: var(--step-2);
   }
-  &.step-3 {
+  &.step-3, &:is(.htw-prose h2) {
     font-size: var(--step-3);
   }
-  &.step-4 {
+  &.step-4, &:is(.htw-prose h1)  {
     font-size: var(--step-4);
   }
   &.step-5 {
@@ -120,7 +115,7 @@ a {
 /* Transitions */
 .fade-slide-down-enter-active,
 .fade-slide-down-leave-active {
-  transition: all 0.2s ease-out;
+  transition: all var(--app-motion-standard-leave);
 }
 
 .fade-slide-down-enter,
