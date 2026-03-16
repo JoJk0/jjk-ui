@@ -1,21 +1,14 @@
 import e from "unplugin-vue-components/vite";
-const s = (t = {
-  componentPrefix: "App"
-}) => [
-  e({
-    dts: !0,
-    dirs: [],
-    resolvers: [
-      (r) => {
-        if (r.startsWith(t.componentPrefix))
-          return {
-            name: r,
-            from: "./src/index"
-          };
-      }
-    ]
-  })
-];
-export {
-  s as default
-};
+//#region src/vite.ts
+var t = (t = { componentPrefix: "App" }) => [e({
+	dts: !0,
+	dirs: [],
+	resolvers: [(e) => {
+		if (e.startsWith(t.componentPrefix)) return {
+			name: e,
+			from: "./src/index"
+		};
+	}]
+})];
+//#endregion
+export { t as default };
