@@ -41,6 +41,6 @@ jobs:
       - name: Disable AppArmor
         run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
 
-      - run: pnpm percy exec pnpm run stories:build --no-sandbox
+      - run: pnpm percy app:exec -- pnpm run stories:build
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
