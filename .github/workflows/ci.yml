@@ -28,8 +28,8 @@ jobs:
       - name: Install
         run: pnpm i
         
-      - name: Install Puppeteer and Chromium
-        run: pnpm puppeteer browsers install chromium
+      - name: Install Chrome
+        run: pnpm puppeteer browsers install chrome
 
       - name: Set PERCY_BROWSER_EXECUTABLE env var
         run: echo "PERCY_BROWSER_EXECUTABLE=$(node -e \"console.log(require('puppeteer').executablePath())\")" >> $GITHUB_ENV
