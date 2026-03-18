@@ -32,7 +32,7 @@ jobs:
         run: pnpm puppeteer browsers install chrome
 
       - name: Set PERCY_BROWSER_EXECUTABLE env var
-        run: echo "PERCY_BROWSER_EXECUTABLE=$(node -e \"console.log(require('puppeteer').executablePath())\")" >> $GITHUB_ENV
+        run: echo 'PERCY_BROWSER_EXECUTABLE=$(node -e "console.log(require(\'puppeteer\').executablePath())")' >> $GITHUB_ENV
 
       - run: pnpm percy exec pnpm run stories:build --no-sandbox
         env:
