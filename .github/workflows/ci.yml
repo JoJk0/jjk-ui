@@ -28,18 +28,23 @@ jobs:
       - name: Install
         run: pnpm i
 
-      - name: Setup Chrome sandbox for Puppeteer
-        run: |
-          ls -la ~/.cache/puppeteer/chrome/
-          cd ~/.cache/puppeteer/chrome/linux-*/chrome-linux64/
-          sudo chown root:root chrome_sandbox
-          sudo chmod 4755 chrome_sandbox
-          sudo cp -p chrome_sandbox /usr/local/sbin/chrome-devel-sandbox
-        shell: bash
+      - name: Set CHROMIUM_BUILD_PATH environment variable
+        run: echo "CHROMIUM_BUILD_PATH=${HOME}/chromium/src/out/**/chrome" >> $GITHUB_ENV
 
-      - name: Export CHROME_DEVEL_SANDBOX env variable
-        run: echo "CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox" >> $GITHUB_ENV
-        shell: bash
+      - name: Add AppArmor profile for chrome-dev-builds
+        run: |
+          cat <<EOF | sudo tee /etc/apparmor.d/chrome-dev-builds
+          abi <abi/4.0>,
+          include <tunables/global>
+
+          profile chrome $CHROMIUM_BUILD_PATH flags=(unconfined) {
+            userns,
+            include if exists <local/chrome>
+          }
+          EOF
+
+      - name: Reload AppArmor profiles
+        run: sudo service apparmor reload
 
       - run: pnpm percy exec pnpm run stories:build
         env:
