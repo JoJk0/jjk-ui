@@ -28,27 +28,6 @@ jobs:
       - name: Install
         run: pnpm i
 
-      - name: Set CHROMIUM_BUILD_PATH environment variable
-        run: echo "CHROMIUM_BUILD_PATH=${HOME}/chromium/src/out/**/chrome" >> $GITHUB_ENV
-
-      - name: Add AppArmor profile for chrome-dev-builds
-        run: |
-          cat <<EOF | sudo tee /etc/apparmor.d/chrome-dev-builds
-          abi <abi/4.0>,
-          include <tunables/global>
-
-          profile chrome $CHROMIUM_BUILD_PATH flags=(unconfined) {
-            userns,
-            include if exists <local/chrome>
-          }
-          EOF
-
-      - name: Reload AppArmor profiles
-        run: sudo service apparmor reload
-
-      - name: Install Puppeteer Chrome
-        run: pnpm puppeteer browsers install chrome
-
-      - run: pnpm percy exec pnpm run stories:build
+      - run: pnpm percy exec pnpm run stories:build -- --no-sandbox
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
