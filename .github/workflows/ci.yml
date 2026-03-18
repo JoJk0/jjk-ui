@@ -14,11 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: main
     steps:
-      - name: Installing apt dependencies
-        run: |
-          sudo apt-get install libsndfile-dev lame libvips libvips-dev # libexpat1-dev gettext libglib2.0-dev liborc-0.4-dev libfftw3-dev liblcms2-dev libmagickwand-dev libopenexr-dev libcfitsio-dev libgif-dev libgsf-1-dev libmatio-dev libopenslide-dev libpango1.0-dev libpoppler-glib-dev librsvg2-dev libwebp-dev
-          vips --version
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -32,6 +27,19 @@ jobs:
 
       - name: Install
         run: pnpm i
+
+      - name: Setup Chrome sandbox for Puppeteer
+        run: |
+          ls -la ~/.cache/puppeteer/chrome/
+          cd ~/.cache/puppeteer/chrome/linux-*/chrome-linux64/
+          sudo chown root:root chrome_sandbox
+          sudo chmod 4755 chrome_sandbox
+          sudo cp -p chrome_sandbox /usr/local/sbin/chrome-devel-sandbox
+        shell: bash
+
+      - name: Export CHROME_DEVEL_SANDBOX env variable
+        run: echo "CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox" >> $GITHUB_ENV
+        shell: bash
 
       - run: pnpm percy exec pnpm run stories:build
         env:
