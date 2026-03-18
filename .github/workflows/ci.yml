@@ -29,10 +29,14 @@ jobs:
         run: pnpm i
         
       - name: Install Chrome
-        run: pnpm puppeteer browsers install chrome
+        id: install_chrome
+        run: |
+          CHROME_INFO=$(pnpm puppeteer browsers install chrome)
+          CHROME_PATH=$(echo "$CHROME_INFO" | awk '{print $2}')
+          echo "chrome_path=$CHROME_PATH" >> $GITHUB_OUTPUT
 
-      - name: Set PERCY_BROWSER_EXECUTABLE env var
-        run: echo 'PERCY_BROWSER_EXECUTABLE=$(node -e "console.log(require(\'puppeteer\').executablePath())")' >> $GITHUB_ENV
+      - name: Set Percy browser executable
+        run: echo "PERCY_BROWSER_EXECUTABLE=${{ steps.install_chrome.outputs.chrome_path }}" >> $GITHUB_ENV
 
       - run: pnpm percy exec pnpm run stories:build --no-sandbox
         env:
