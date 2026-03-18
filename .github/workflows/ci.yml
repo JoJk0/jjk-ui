@@ -46,6 +46,9 @@ jobs:
       - name: Reload AppArmor profiles
         run: sudo service apparmor reload
 
+      - name: Install Puppeteer Chrome
+        run: pnpm puppeteer browsers install chrome
+
       - run: pnpm percy exec pnpm run stories:build
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
