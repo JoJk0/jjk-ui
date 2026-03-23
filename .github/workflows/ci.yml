@@ -27,20 +27,11 @@ jobs:
 
       - name: Install
         run: pnpm i
-        
-      - name: Install Chrome
-        id: install_chrome
-        run: |
-          CHROME_INFO=$(pnpm puppeteer browsers install chrome)
-          CHROME_PATH=$(echo "$CHROME_INFO" | awk '{print $2}')
-          echo "chrome_path=$CHROME_PATH" >> $GITHUB_OUTPUT
 
-      - name: Set Percy browser executable
-        run: echo "PERCY_BROWSER_EXECUTABLE=${{ steps.install_chrome.outputs.chrome_path }}" >> $GITHUB_ENV
+      - name: Build
+        run: pnpm build
 
-      - name: Disable AppArmor
-        run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
-
-      - run: pnpm percy exec --config .percy.yml -- pnpm run stories:build
+      - name: Lost Pixel
+        uses: lost-pixel/lost-pixel@v3.16.0
         env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
