@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DropdownMenuItem, type AsTag } from 'reka-ui';
-import type { Component } from 'vue';
+import { DropdownMenuItem, type AsTag } from 'reka-ui'
+import type { Component } from 'vue'
 
 defineProps<{
   as?: AsTag | Component

@@ -8,9 +8,9 @@ import {
   DialogRoot,
   DialogTitle,
   DialogTrigger,
-} from 'reka-ui';
-import AppButton from './AppButton.vue';
-import AppCard from './AppCard.vue';
+} from 'reka-ui'
+import AppButton from './AppButton.vue'
+import AppCard from './AppCard.vue'
 
 defineProps<{
   /**

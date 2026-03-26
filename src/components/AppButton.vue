@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useMouseInElement } from '@vueuse/core';
-import VWave from 'v-wave';
-import { computed, ref, type Component } from 'vue';
+import { useMouseInElement } from '@vueuse/core'
+import VWave from 'v-wave'
+import { computed, ref, type Component } from 'vue'
 
 const {
   text,
@@ -33,14 +33,14 @@ const { elementX, elementY, elementWidth, elementHeight, isOutside } =
   useMouseInElement(buttonEl)
 
 const shineXCss = computed(() =>
-  !isOutside.value
-    ? `${(elementX.value / elementWidth.value) * 100}%`
-    : undefined,
+  isOutside.value
+    ? undefined
+    : `${(elementX.value / elementWidth.value) * 100}%`,
 )
 const shineYCss = computed(() =>
-  !isOutside.value
-    ? `${(elementY.value / elementHeight.value) * 100}%`
-    : undefined,
+  isOutside.value
+    ? undefined
+    : `${(elementY.value / elementHeight.value) * 100}%`,
 )
 </script>
 

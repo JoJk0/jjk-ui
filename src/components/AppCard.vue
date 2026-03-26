@@ -5,7 +5,13 @@ const { variant = 'raised' } = defineProps<{
 </script>
 
 <template>
-  <div :class="['app-shape-squircle', $style['app-card'], { [$style.variant]: variant }]">
+  <div
+    :class="[
+      'app-shape-squircle',
+      $style['app-card'],
+      { [$style.variant]: variant },
+    ]"
+  >
     <slot />
   </div>
 </template>

@@ -67,7 +67,7 @@ const inputProps = computed(() => ({
     <input v-else v-bind="inputProps" v-model="modelValue" />
     <AppIcon v-if="iconAfter" :icon="iconAfter" :class="$style['icon-after']" />
     <div v-if="$slots.actions" :class="$style.actions">
-      <slot name="actions"></slot>
+      <slot name="actions" />
     </div>
   </div>
 </template>
@@ -115,7 +115,9 @@ const inputProps = computed(() => ({
   width: fit-content;
 
   &.outerBorder {
-    padding-inline: calc(var(--jjk-text-field-padding) + var(--app-shape-squircle-border-width));
+    padding-inline: calc(
+      var(--jjk-text-field-padding) + var(--app-shape-squircle-border-width)
+    );
     padding-block: var(--app-shape-squircle-border-width);
     margin: calc(var(--app-shape-squircle-border-width) * -1);
     clip-path: shape(var(--squircle-shape-no-border));
@@ -124,7 +126,6 @@ const inputProps = computed(() => ({
       inset: 0;
     }
   }
-
 
   &.interactive:hover {
     --jjk-text-field-border-color: var(--app-color-secondary);

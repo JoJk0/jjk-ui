@@ -1,4 +1,8 @@
-<script lang="ts" setup generic="T extends AcceptableValue, TMultiple extends boolean = false">
+<script
+  lang="ts"
+  setup
+  generic="T extends AcceptableValue, TMultiple extends boolean = false"
+>
 import {
   SelectArrow,
   SelectContent,
@@ -69,7 +73,7 @@ const { vWave } = createLocalWaveDirective({
 <template>
   <SelectRoot
     v-model:open="isOpen"
-    v-model="(modelValue as AcceptableValue)"
+    v-model="modelValue as AcceptableValue"
     :name
     :multiple
     :required

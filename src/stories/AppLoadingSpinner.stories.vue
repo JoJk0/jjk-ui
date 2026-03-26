@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppLoadingSpinner from '~/components/AppLoadingSpinner.vue';
+import AppLoadingSpinner from '~/components/AppLoadingSpinner.vue'
 </script>
 
 <template>

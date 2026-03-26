@@ -1,9 +1,8 @@
 /// <reference types="vitest" />
 /// <reference types="histoire" />
 
-import Vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
-
+import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 // import UnpluginIsolatedDecl from "unplugin-isolated-decl/vite";
 import Components from 'unplugin-vue-components/vite'

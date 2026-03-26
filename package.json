@@ -1,10 +1,33 @@
 {
   "name": "jjk-ui",
   "displayName": "JJK UI",
+  "type": "module",
   "version": "1.7.2",
   "packageManager": "pnpm@10.32.1",
   "description": "A Vue UI library for jojko.tech and other personal projects",
-  "type": "module",
+  "author": {
+    "name": "Jacob Janisz",
+    "email": "jacob@jojko.tech"
+  },
+  "contributors": [
+    {
+      "name": "Jacob Janisz",
+      "email": "jacob@jojko.tech"
+    }
+  ],
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/JoJk0"
+  },
+  "homepage": "https://ui.jojko.tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoJk0/jjk-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoJk0/jjk-ui/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
@@ -17,35 +40,7 @@
     "jojk0",
     "jojko.tech"
   ],
-  "license": "MIT",
-  "homepage": "https://ui.jojko.tech",
-  "bugs": {
-    "url": "https://github.com/JoJk0/jjk-ui/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JoJk0/jjk-ui.git"
-  },
-  "author": {
-    "name": "Jacob Janisz",
-    "email": "jacob@jojko.tech"
-  },
-  "contributors": [
-    {
-      "name": "Jacob Janisz",
-      "email": "jacob@jojko.tech"
-    }
-  ],
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/JoJk0"
-  },
-  "files": [
-    "dist/*"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -59,6 +54,9 @@
     "./setup": "./dist/setup.js",
     "./*": "./*"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
       "*": [
@@ -66,7 +64,12 @@
       ]
     }
   },
-  "sideEffects": false,
+  "files": [
+    "dist/*"
+  ],
+  "engines": {
+    "node": ">=22.13.1"
+  },
   "scripts": {
     "dev": "histoire dev",
     "lint": "eslint .",
@@ -116,7 +119,7 @@
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.27",
     "commitlint": "^20.5.0",
-    "eslint": "9.20.0",
+    "eslint": "10.1.0",
     "eslint-plugin-format": "^2.0.1",
     "histoire": "^1.0.0-beta.1",
     "husky": "^9.1.7",
@@ -142,9 +145,6 @@
     "vue": "^3.5.30",
     "vue-tsc": "^3.2.5"
   },
-  "engines": {
-    "node": ">=22.13.1"
-  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@percy/core",
@@ -152,6 +152,9 @@
       "puppeteer",
       "vue-demi"
     ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*.ts": "eslint --fix",
@@ -183,9 +186,6 @@
       "href": "https://github.com/JoJk0/jjk-ui"
     }
   ],
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
   "release": {
     "branches": [
       "main",

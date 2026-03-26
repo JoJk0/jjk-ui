@@ -4,17 +4,13 @@ export interface Options {
   componentPrefix: string
 }
 
-export default (
-  options: Options = {
-    componentPrefix: 'App',
-  },
-) => [
+const vite = (options: Options) => [
   Components({
     dts: true,
     dirs: [],
     resolvers: [
       (name) => {
-        if (name.startsWith(options.componentPrefix)) {
+        if (name.startsWith(options.componentPrefix || 'App')) {
           return {
             name,
             from: './src/index',
@@ -24,3 +20,5 @@ export default (
     ],
   }),
 ]
+
+export default vite

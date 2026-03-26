@@ -1,3 +1,3 @@
 <script>
-const isNuxt = window.__NUXT__ || false
+export const isNuxt = globalThis.__NUXT__ || false
 </script>

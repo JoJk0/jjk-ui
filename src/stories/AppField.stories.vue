@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import AppField from '~/components/AppField.vue';
+import { ref } from 'vue'
+import AppField from '~/components/AppField.vue'
 
 const modelValue = ref('')
 </script>
@@ -25,7 +25,12 @@ const modelValue = ref('')
     </Variant>
     <Variant title="Checkbox with error" label="Label">
       <AppField v-model="modelValue" error="This is illegal" label="Label">
-        <AppCheckbox :model-value="true" name="checkbox" error placeholder="Placeholder" />
+        <AppCheckbox
+          :model-value="true"
+          name="checkbox"
+          error
+          placeholder="Placeholder"
+        />
       </AppField>
     </Variant>
   </Story>
