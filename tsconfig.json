@@ -33,7 +33,8 @@
     "env.d.ts",
     "src/**/*.vue",
     "histoire.config.ts",
-    "histoire.setup.ts"
+    "histoire.setup.ts",
+    "lostpixel.config.ts"
   ],
   "exclude": ["dist", "node_modules"]
 }
