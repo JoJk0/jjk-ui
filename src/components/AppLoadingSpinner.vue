@@ -18,7 +18,7 @@
       cx="34"
       cy="34"
       r="30"
-    ></circle>
+    />
   </svg>
 </template>
 

@@ -18,4 +18,3 @@ export { default as AppLogo } from '~/components/AppLogo.vue'
 export { default as AppSelectField } from '~/components/AppSelectField.vue'
 export { default as AppTextField } from '~/components/AppTextField.vue'
 export { default as AppTooltip } from '~/components/AppTooltip.vue'
-

@@ -6,8 +6,8 @@ import {
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-} from 'reka-ui';
-import AppCard from './AppCard.vue';
+} from 'reka-ui'
+import AppCard from './AppCard.vue'
 
 const { position = 'block-start' } = defineProps<{
   position?: 'block-start' | 'block-end' | 'inline-start' | 'inline-end'
@@ -49,7 +49,7 @@ const isOpen = defineModel<boolean>('open', { default: false })
           :class="[$attrs.class, $style['app-tooltip']]"
         >
           <AppCard :class="$style['card']"><slot /></AppCard>
-        <TooltipArrow :class="$style.arrow" />
+          <TooltipArrow :class="$style.arrow" />
         </TooltipContent>
       </TooltipPortal>
     </TooltipRoot>
@@ -84,7 +84,9 @@ const isOpen = defineModel<boolean>('open', { default: false })
   .arrow {
     fill: var(--jjk-tooltip-background-color);
     stroke: var(--app-color-outline);
-    --arrow-border-canceller: hsl(from var(--app-color-outline) calc(255 - h) calc(255 - s) calc(255 - l));
+    --arrow-border-canceller: hsl(
+      from var(--app-color-outline) calc(255 - h) calc(255 - s) calc(255 - l)
+    );
   }
   &[data-side='top'] .arrow {
     border-block-start: 1px solid var(--arrow-border-canceller);

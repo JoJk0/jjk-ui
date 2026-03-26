@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppDialog from '~/components/AppDialog.vue';
+import AppDialog from '~/components/AppDialog.vue'
 </script>
 
 <template>
@@ -9,12 +9,8 @@ import AppDialog from '~/components/AppDialog.vue';
         <template #trigger>
           <AppButton>Open Dialog</AppButton>
         </template>
-        <template #title>
-          Hello Dialog!
-        </template>
-        <template #description>
-          Dialog description
-        </template>
+        <template #title> Hello Dialog! </template>
+        <template #description> Dialog description </template>
         <p>Dialog content</p>
         <template #actions>
           <AppButton variant="primary">OK</AppButton>

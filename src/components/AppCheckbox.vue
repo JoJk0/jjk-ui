@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
-import { CheckboxIndicator, CheckboxRoot } from 'reka-ui';
+import { Icon } from '@iconify/vue'
+import { CheckboxIndicator, CheckboxRoot } from 'reka-ui'
 
 defineProps<{
   disabled?: boolean
@@ -32,11 +32,13 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
     ]"
   >
     <CheckboxIndicator :class="$style.indicator">
+      <Icon v-if="modelValue === 'indeterminate'" icon="line-md:minus" />
       <Icon
-        v-if="modelValue === 'indeterminate'"
-        icon="line-md:minus"
+        v-if="modelValue === true"
+        icon="line-md:confirm"
+        dur="3s"
+        stroke-width="5"
       />
-      <Icon v-if="modelValue === true" icon="line-md:confirm" dur="3s" stroke-width="5" />
     </CheckboxIndicator>
   </CheckboxRoot>
 </template>
@@ -57,7 +59,8 @@ const modelValue = defineModel<boolean | 'indeterminate'>({
   &:hover {
     filter: brightness(0.8);
   }
-  &:focus-visible, &:active {
+  &:focus-visible,
+  &:active {
     outline: 1px solid var(--app-color-outline);
     box-shadow: 0 0 0 2px var(--app-color-outline);
     filter: brightness(1.2);

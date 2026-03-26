@@ -5,8 +5,8 @@ import {
   DropdownMenuPortal,
   DropdownMenuRoot,
   DropdownMenuTrigger,
-} from 'reka-ui';
-import AppCard from './AppCard.vue';
+} from 'reka-ui'
+import AppCard from './AppCard.vue'
 
 defineProps<{
   /**
@@ -38,7 +38,6 @@ defineSlots<{
  * Whether the dropdown is open
  */
 const isOpen = defineModel<boolean>('open', { default: false })
-
 </script>
 
 <template>
@@ -77,7 +76,7 @@ const isOpen = defineModel<boolean>('open', { default: false })
   .card {
     --app-card-padding: var(--jjk-dropdown-content-padding);
     --app-card-corner-radius: var(--jjk-dropdown-corner-radius);
-    backdrop-filter: blur(1px) contrast(0.7) brightness(.45) saturate(3);
+    backdrop-filter: blur(1px) contrast(0.7) brightness(0.45) saturate(3);
     gap: var(--jjk-dropdown-content-gap);
   }
   .arrow {

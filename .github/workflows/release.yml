@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write
       issues: write
-      pull-requests: write 
+      pull-requests: write
       id-token: write
     steps:
       - name: Checkout
@@ -28,8 +28,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-          cache: "pnpm"
+          node-version: 'lts/*'
+          cache: pnpm
 
       - name: Install
         run: pnpm install
