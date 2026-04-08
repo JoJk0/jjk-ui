@@ -15,12 +15,12 @@ jobs:
     environment: main
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: pnpm
@@ -32,6 +32,6 @@ jobs:
         run: pnpm stories:build
 
       - name: Lost Pixel
-        uses: lost-pixel/lost-pixel@v3.16.0
+        uses: lost-pixel/lost-pixel@next
         env:
           LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
