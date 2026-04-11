@@ -127,6 +127,7 @@
     "lint-staged": "^16.4.0",
     "lost-pixel": "^3.22.0",
     "oxc-transform": "^0.120.0",
+    "playwright": "^1.59.1",
     "pnpm": "^10.32.1",
     "postcss": "^8.5.8",
     "sass": "^1.98.0",

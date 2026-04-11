@@ -114,10 +114,13 @@ importers:
         version: 16.4.0
       lost-pixel:
         specifier: ^3.22.0
-        version: 3.22.0(@types/node@25.5.0)(playwright-core@1.58.2)(typescript@5.9.3)
+        version: 3.22.0(@types/node@25.5.0)(playwright-core@1.59.1)(typescript@5.9.3)
       oxc-transform:
         specifier: ^0.120.0
         version: 0.120.0
+      playwright:
+        specifier: ^1.59.1
+        version: 1.59.1
       pnpm:
         specifier: ^10.32.1
         version: 10.32.1
@@ -3648,6 +3651,11 @@ packages:
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -5009,8 +5017,13 @@ packages:
   pkg-types@2.3.0:
     resolution: {integrity: sha512-SIqCzDRg0s9npO5XQ3tNZioRY1uK06lA41ynBC1YmFTmnY6FjUjVt6s4LoADmwoig1qqD0oK8h1p/8mlMx8Oig==}
 
-  playwright-core@1.58.2:
-    resolution: {integrity: sha512-yZkEtftgwS8CsfYo7nm0KE8jsvm6i/PTgVtB8DL726wNf6H2IMsDuxCpJj59KDaxCtSnrWan2AeDqM7JBaultg==}
+  playwright-core@1.59.1:
+    resolution: {integrity: sha512-HBV/RJg81z5BiiZ9yPzIiClYV/QMsDCKUyogwH9p3MCP6IYjUFu/MActgYAvK0oWyV9NlwM3GLBjADyWgydVyg==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright@1.59.1:
+    resolution: {integrity: sha512-C8oWjPR3F81yljW9o5OxcWzfh6avkVwDD2VYdwIGqTkl+OGFISgypqzfu7dOe4QNLL2aqcWBmI3PMtLIK233lw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -9738,6 +9751,9 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
+  fsevents@2.3.2:
+    optional: true
+
   fsevents@2.3.3:
     optional: true
 
@@ -10420,7 +10436,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lost-pixel@3.22.0(@types/node@25.5.0)(playwright-core@1.58.2)(typescript@5.9.3):
+  lost-pixel@3.22.0(@types/node@25.5.0)(playwright-core@1.59.1)(typescript@5.9.3):
     dependencies:
       '@types/xml2js': 0.4.14
       async: 3.2.6
@@ -10435,7 +10451,7 @@ snapshots:
       lodash.kebabcase: 4.1.1
       odiff-bin: 2.6.1
       pixelmatch: 5.3.0
-      playwright-core: 1.58.2
+      playwright-core: 1.59.1
       pngjs: 7.0.0
       posthog-node: 3.5.0
       serve-handler: 6.1.6
@@ -11294,7 +11310,13 @@ snapshots:
       exsolve: 1.0.8
       pathe: 2.0.3
 
-  playwright-core@1.58.2: {}
+  playwright-core@1.59.1: {}
+
+  playwright@1.59.1:
+    dependencies:
+      playwright-core: 1.59.1
+    optionalDependencies:
+      fsevents: 2.3.2
 
   pluralize@8.0.0: {}
 
