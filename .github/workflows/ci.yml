@@ -35,3 +35,8 @@ jobs:
         run: pnpm lost-pixel
         env:
           LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
+          CI_BUILD_ID: ${{ github.run_id }}
+          CI_BUILD_NUMBER: ${{ github.run_number }}
+          REPOSITORY: ${{ github.repository }}
+          COMMIT_REF_NAME: ${{ github.ref_name }}
+          COMMIT_HASH: ${{ github.sha }}
