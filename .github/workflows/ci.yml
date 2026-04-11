@@ -32,6 +32,6 @@ jobs:
         run: pnpm stories:build
 
       - name: Lost Pixel
-        uses: lost-pixel/lost-pixel@next
+        run: pnpm lost-pixel
         env:
           LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
