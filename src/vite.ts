@@ -1,10 +1,11 @@
 import Components from 'unplugin-vue-components/vite'
+import type { Plugin } from 'vite'
 
 export interface Options {
   componentPrefix: string
 }
 
-const vite = (options: Options) => [
+const vite = (options: Options): Plugin[] => [
   Components({
     dts: true,
     dirs: [],
