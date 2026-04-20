@@ -4,11 +4,10 @@
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
     "moduleDetection": "force",
-    "baseUrl": ".",
     "module": "preserve",
     "moduleResolution": "bundler",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "types": [
@@ -27,14 +26,14 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts",
-    "**/*.d.ts",
-    "src/**/*.vue",
-    "env.d.ts",
-    "src/**/*.vue",
-    "histoire.config.ts",
-    "histoire.setup.ts",
-    "lostpixel.config.ts"
+    "./src/**/*.ts",
+    "./**/*.d.ts",
+    "./src/**/*.vue",
+    "./env.d.ts",
+    "./src/**/*.vue",
+    "./histoire.config.ts",
+    "./histoire.setup.ts",
+    "./lostpixel.config.ts"
   ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["./dist", "./node_modules"]
 }
